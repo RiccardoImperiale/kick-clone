@@ -1,0 +1,96 @@
+$error-color: var(--color-error);
+$text-color: var(--color-white);
+$input-border-color: var(--color-border-secondary-700);
+$input-placeholder-color: var(--color-text-placeholder);
+$input-border-focus-color: var(--color-white);
+$input-bg-color: var(--color-bg-primary);
+$input-border-hover-color: var(--color-border-secondary-400);
+
+.inputGroup {
+    position: relative;
+
+    label {
+        display: block;
+        font-weight: 600;
+        font-size: 0.875rem;
+        margin-bottom: 0.5rem;
+        text-transform: capitalize;
+        width: fit-content;
+
+        span {
+            color: $error-color;
+        }
+
+        &.error {
+            color: $error-color;
+        }
+    }
+}
+
+.inputWrapper {
+    display: flex;
+    align-items: center;
+
+    input {
+        width: 100%;
+        height: 2.25rem;
+        border: 0.125rem solid $input-border-color;
+        padding-inline: 0.75rem;
+        padding-bottom: 0.0625rem;
+        font-size: 0.875rem;
+        background-color: $input-bg-color;
+        color: $text-color;
+        transition: 0.2s ease;
+
+        &::placeholder {
+            color: $input-placeholder-color;
+        }
+
+        &:focus {
+            outline: none;
+            border-color: $input-border-focus-color;
+        }
+
+        &:hover {
+            border-color: $input-border-hover-color;
+        }
+
+        &:not(:focus):not(:hover) {
+            border-color: $input-border-color;
+        }
+
+        &:-webkit-autofill {
+            -webkit-text-fill-color: $text-color;
+            box-shadow: 0 0 0 62.5rem $input-bg-color inset;
+            border: 0.125rem solid $input-border-color;
+        }
+    }
+}
+
+.inputIcon {
+    margin-right: 0.625rem;
+    display: flex;
+}
+
+.iconWrapper {
+    position: absolute;
+    right: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.errorMsg {
+    font-size: 0.75rem;
+    color: $error-color;
+}
+
+.inputWrapper input[type='number'] {
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+}

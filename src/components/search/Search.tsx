@@ -1,6 +1,6 @@
 'use client'
 import { SearchIcon } from '@/assets/icons/SearchIcon'
-import styles from './InputSearch.module.css'
+import styles from './Search.module.scss'
 
 interface InputProps {
     onChange?: (value: string) => void
@@ -12,7 +12,7 @@ interface InputProps {
     autocomplete?: string
 }
 
-export const InputSearch = (props: InputProps) => {
+export const Search = (props: InputProps) => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (props.onChange) {
             props.onChange(e.target.value)

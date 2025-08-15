@@ -1,3 +1,9 @@
+$input-border-color: var(--color-border-secondary-700);
+$input-placeholder-color: var(--color-text-placeholder);
+$text-color: var(--color-white);
+$input-border-hover-color: var(--color-border-secondary-400);
+$input-border-focus-color: var(--color-white);
+
 .inputSearch {
     position: relative;
     display: flex;
@@ -13,27 +19,27 @@
     input {
         width: 100%;
         height: 2.5rem;
-        border: 2px solid var(--color-border-secondary-700);
+        border: 2px solid $input-border-color;
         padding-left: 2.1875rem;
         border-radius: 2.5rem;
         font-size: 0.875rem;
         line-height: 1.25rem;
         font-weight: 600;
         background-color: transparent;
-        color: var(--color-white);
+        color: $text-color;
         transition: border-color 0.2s ease;
 
         &::placeholder {
-            color: var(--color-text-placeholder);
+            color: $input-placeholder-color;
         }
 
         &:hover {
-            border: 2px solid var(--color-border-secondary-300);
+            border: 2px solid $input-border-hover-color;
         }
 
         &:focus {
             outline: none;
-            border-color: var(--color-white);
+            border-color: $input-border-hover-color;
         }
     }
 }
