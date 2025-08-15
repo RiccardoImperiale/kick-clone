@@ -1,0 +1,39 @@
+.inputSearch {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    .inputIcon {
+        position: absolute;
+        left: 0.75rem;
+        display: flex;
+    }
+
+    input {
+        width: 100%;
+        height: 2.5rem;
+        border: 2px solid var(--color-border-secondary-700);
+        padding-left: 2.1875rem;
+        border-radius: 2.5rem;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        font-weight: 600;
+        background-color: transparent;
+        color: var(--color-white);
+        transition: border-color 0.2s ease;
+
+        &::placeholder {
+            color: var(--color-text-placeholder);
+        }
+
+        &:hover {
+            border: 2px solid var(--color-border-secondary-300);
+        }
+
+        &:focus {
+            outline: none;
+            border-color: var(--color-white);
+        }
+    }
+}
