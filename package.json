@@ -9,15 +9,21 @@
         "lint": "next lint"
     },
     "dependencies": {
+        "@supabase/ssr": "^0.6.1",
+        "@supabase/supabase-js": "^2.55.0",
         "framer-motion": "^12.23.12",
         "next": "15.4.6",
+        "next-nprogress-bar": "^2.4.7",
+        "nprogress": "^0.2.0",
         "react": "19.1.0",
         "react-dom": "19.1.0",
-        "sass": "^1.90.0"
+        "sass": "^1.90.0",
+        "zod": "^4.0.17"
     },
     "devDependencies": {
         "@eslint/eslintrc": "^3",
         "@types/node": "^20",
+        "@types/nprogress": "^0.2.3",
         "@types/react": "^19",
         "@types/react-dom": "^19",
         "eslint": "^9",

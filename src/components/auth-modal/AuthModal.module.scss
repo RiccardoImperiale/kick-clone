@@ -51,6 +51,8 @@ $icon-box-bg-color: var(--color-bg-secondary);
     z-index: 4;
     transform: scale(0.9);
     transition: transform 0.2s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .header {

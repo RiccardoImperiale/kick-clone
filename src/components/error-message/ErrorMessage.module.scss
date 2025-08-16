@@ -1,0 +1,6 @@
+$error-color: var(--color-error);
+
+.errorMsg {
+    font-size: 0.75rem;
+    color: $error-color;
+}

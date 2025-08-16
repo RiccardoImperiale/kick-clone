@@ -6,6 +6,7 @@ import { EyeOpenIcon } from '@/assets/icons/EyeOpenIcon'
 
 interface InputProps {
     id: string
+    name?: string
     label?: string
     type?: string
     placeholder?: string
@@ -55,6 +56,7 @@ export const Input = (props: InputProps) => {
                 <input
                     type={props.type === 'password' ? (isPasswordVisible ? 'text' : 'password') : props.type}
                     id={props.id}
+                    name={props.name}
                     placeholder={props.placeholder}
                     value={props.value}
                     onChange={handleChange}
