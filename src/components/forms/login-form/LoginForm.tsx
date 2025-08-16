@@ -24,7 +24,7 @@ export const LoginForm = ({ onLoadingChange, onClose }: ILoginFormProps) => {
         e.preventDefault()
 
         setErrorMsg({})
-        setRespMsg('')
+        // setRespMsg('')
         const formErrors = validateLogin({ email, password })
         if (Object.keys(formErrors).length > 0) {
             setErrorMsg(formErrors)

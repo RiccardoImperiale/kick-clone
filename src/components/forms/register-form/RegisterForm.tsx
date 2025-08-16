@@ -23,7 +23,7 @@ export const RegisterForm = ({ onLoadingChange, onClose }: ISignUpFormProps) => 
         e.preventDefault()
 
         setErrorMsg({})
-        setRespMsg('')
+        // setRespMsg('')
         const formErrors = validateSignUp({ email, username, password })
         if (Object.keys(formErrors).length > 0) {
             setErrorMsg(formErrors)

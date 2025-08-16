@@ -1,0 +1,95 @@
+$dropdown-color: var(--color-bg-secondary-400);
+$border-color: var(--color-bg-secondary);
+
+.avatar {
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 2rem;
+    aspect-ratio: 1;
+    cursor: pointer;
+    transition: 0.2s ease;
+
+    &:active {
+        transform: scale(0.9);
+    }
+}
+
+.userBox {
+    position: relative;
+}
+
+.dropdown {
+    position: absolute;
+    top: 2.9rem;
+    right: 0;
+    background-color: $dropdown-color;
+    border-radius: 0.25rem;
+    padding: 0.75rem;
+    transform: scale(0);
+    opacity: 0;
+    transform-origin: top right;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    overflow: hidden;
+
+    &.open {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    padding-bottom: 0.75rem;
+
+    svg {
+        background-color: black;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 2rem;
+        padding: 0.2rem;
+    }
+}
+
+.footer {
+    padding-top: 0.25rem;
+}
+
+.list {
+    border-top: 0.0625rem solid $border-color;
+    border-bottom: 0.0625rem solid $border-color;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.25rem 0;
+}
+
+.tab {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.5rem 1rem 0.5rem 0.5rem;
+    border-radius: 0.25rem;
+    transition: 0.2s ease;
+    color: white;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+
+    &:hover {
+        background-color: $border-color;
+    }
+}

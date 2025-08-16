@@ -1,7 +1,7 @@
 'use client'
 
-import styles from './Navbar.module.scss'
 import Image from 'next/image'
+import styles from './Navbar.module.scss'
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
@@ -10,7 +10,9 @@ import { Button } from '@/components/button/Button'
 import { Search } from '@/components/search/Search'
 import { AuthModal, Tab } from '@/components/auth-modal/AuthModal'
 import { User } from '@supabase/supabase-js'
-import Link from 'next/link'
+import { LoadingBar } from '@/components/loading-bar/LoadingBar'
+import { useLoadingStore } from '@/state/loadingStore'
+import { UserDropdown } from '../user-dropdown/UserDropdown'
 
 interface HeaderProps {
     user: User | null
@@ -18,6 +20,7 @@ interface HeaderProps {
 
 export const Navbar = (props: HeaderProps) => {
     const router = useRouter()
+    const isLoading = useLoadingStore(state => state.isLoading)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [initialTab, setInitialTab] = useState<Tab | null>(null)
 
@@ -42,21 +45,20 @@ export const Navbar = (props: HeaderProps) => {
     return (
         <>
             {isModalOpen && <AuthModal onClose={() => setIsModalOpen(false)} initialTab={initialTab} />}
+            <LoadingBar isLoading={isLoading} />
             <nav>
                 <div className={styles.left}>
                     <div className={styles.iconBox}>
                         <BurgerIcon width={16} height={16} />
                     </div>
-                    <Image src="/kick-logo.svg" alt="Logo" width={97} height={26} priority />
+                    <Image onClick={() => router.push('/')} src="/kick-logo.svg" alt="Logo" width={97} height={26} priority />
                 </div>
                 <div className={styles.middle}>
                     <Search placeholder="Search" />
                 </div>
                 <div className={styles.right}>
                     {props.user ? (
-                        <Link href="/account">
-                            <div>{props.user.email}</div>
-                        </Link>
+                        <UserDropdown user={props.user} />
                     ) : (
                         <>
                             <Button text="Log In" color="neutral" onClick={() => handleModalOpen('Log In')} />

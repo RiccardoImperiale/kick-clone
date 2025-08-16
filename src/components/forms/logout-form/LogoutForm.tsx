@@ -1,18 +1,25 @@
 'use client'
 
-import { useState } from 'react'
 import { signOut } from '@/actions/auth'
 import { Button } from '@/components/button/Button'
+import { useLoadingStore } from '@/state/loadingStore'
+import { useRouter } from 'next/navigation'
 
 export const LogoutForm = () => {
-    const [isLoading, setIsLoading] = useState(false)
+    const setIsLoading = useLoadingStore(state => state.setIsLoading)
+    const router = useRouter()
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
 
         setIsLoading(true)
-        await signOut()
-        setIsLoading(false)
+        const res = await signOut()
+        if (res.success) {
+            setIsLoading(false)
+            router.push('/')
+        } else {
+            router.push('/error')
+        }
     }
 
     return (

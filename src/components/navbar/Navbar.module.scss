@@ -1,10 +1,14 @@
-$icon-box-bg-color: var(--color-bg-secondary);
+$box-bg-color: var(--color-bg-secondary);
 
 .left,
 .right {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+.left img {
+    cursor: pointer;
 }
 
 .middle {
@@ -22,7 +26,7 @@ $icon-box-bg-color: var(--color-bg-secondary);
     transition: 0.2s ease;
 
     &:hover {
-        background-color: $icon-box-bg-color;
+        background-color: $box-bg-color;
         cursor: pointer;
     }
 }
