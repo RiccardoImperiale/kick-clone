@@ -1,6 +1,5 @@
 $modal-bg-color: var(--color-bg-secondary-400);
 $text-color: var(--color-white);
-$fp-text-color: var(--color-text-300);
 $border-color: var(--color-border-regular);
 $tab-active-border-color: var(--color-bg-500);
 $filter-fill-color: var(--color-fill-overlay);
@@ -117,22 +116,6 @@ $icon-box-bg-color: var(--color-bg-secondary);
         display: flex;
         flex-direction: column;
         gap: 1rem;
-    }
-}
-
-.forgotPasswordWrapper > span {
-    display: flex;
-    color: $fp-text-color;
-    width: fit-content;
-    margin-left: auto;
-    font-weight: 600;
-    cursor: pointer;
-    font-size: 0.75rem;
-    line-height: 1.5rem;
-    transition: 0.2s ease;
-
-    &:hover {
-        color: $text-color;
     }
 }
 

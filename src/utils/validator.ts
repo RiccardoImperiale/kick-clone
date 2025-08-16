@@ -14,6 +14,11 @@ export interface SignUpError {
     password?: string
 }
 
+export interface LoginError {
+    email?: string
+    password?: string
+}
+
 export const validateSignUp = (formData: SignUpError) => {
     const formErrors: SignUpError = {}
 
@@ -30,6 +35,15 @@ export const validateSignUp = (formData: SignUpError) => {
     } else if (!passwordRegex.test(formData.password)) {
         formErrors.password = 'Password must be min 8 characters, 1 special character, 1 number'
     }
+
+    return formErrors
+}
+
+export const validateLogin = (formData: LoginError) => {
+    const formErrors: LoginError = {}
+
+    if (!formData.email) formErrors.email = 'Email required'
+    if (!formData.password) formErrors.password = 'Password required'
 
     return formErrors
 }

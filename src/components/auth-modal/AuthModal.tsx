@@ -2,13 +2,10 @@
 import styles from './AuthModal.module.scss'
 import Image from 'next/image'
 import { CloseIcon } from '@/assets/icons/CloseIcon'
-import { Input } from '@/components/input/Input'
-import { Button } from '@/components/button/Button'
 import { useState, useEffect } from 'react'
-import { login } from '../../actions/auth-actions'
-import { SignUpForm } from '@/components/forms/signup-form/SignUpForm'
-import { LoadingBar } from '../loading-bar/LoadingBar'
-import { useRouter } from 'next/navigation'
+import { LoadingBar } from '@/components/loading-bar/LoadingBar'
+import { LoginForm } from '@/components/forms/login-form/LoginForm'
+import { RegisterForm } from '@/components/forms/register-form/RegisterForm'
 
 interface IAuthModalProps {
     onClose: () => void
@@ -18,7 +15,6 @@ interface IAuthModalProps {
 export type Tab = 'Log In' | 'Sign Up'
 
 export const AuthModal = ({ onClose, initialTab }: IAuthModalProps) => {
-    const router = useRouter()
     const [activeTab, setActiveTab] = useState<Tab | null>(initialTab)
     const [isVisible, setIsVisible] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
@@ -31,17 +27,6 @@ export const AuthModal = ({ onClose, initialTab }: IAuthModalProps) => {
         setIsVisible(false)
         setTimeout(onClose, 300)
     }
-
-    const loginForm = (
-        <form action={login}>
-            <Input errorMsg="" label="Email or Username" id="email" name="email" autocomplete="email" />
-            <div className={styles.forgotPasswordWrapper}>
-                <Input label="Password" type="password" id="password" name="password" />
-                <span>Forgot password?</span>
-            </div>
-            <Button text="Log In" color="primary" type="submit" />
-        </form>
-    )
 
     return (
         <div className={`${styles.popupLayout} ${isVisible ? styles.show : styles.hide}`}>
@@ -63,7 +48,11 @@ export const AuthModal = ({ onClose, initialTab }: IAuthModalProps) => {
                     </div>
                 </div>
                 <div className={styles.contentWrapper}>
-                    {activeTab === 'Log In' ? loginForm : <SignUpForm onLoadingChange={setIsLoading} onClose={onClose} />}
+                    {activeTab === 'Log In' ? (
+                        <LoginForm onLoadingChange={setIsLoading} onClose={onClose} />
+                    ) : (
+                        <RegisterForm onLoadingChange={setIsLoading} onClose={onClose} />
+                    )}
                 </div>
             </div>
         </div>

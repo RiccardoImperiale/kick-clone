@@ -1,6 +1,7 @@
+import styles from './page.module.scss'
 import { redirect } from 'next/navigation'
-// import AccountForm from "./account-form";
-import { createClient } from '../../utils/supabase/server'
+import { createClient } from '@/utils/supabase/server'
+import { LogoutForm } from '@/components/forms/logout-form/LogoutForm'
 
 export default async function Account() {
     const supabase = await createClient()
@@ -12,8 +13,8 @@ export default async function Account() {
     }
 
     return (
-        <div>
-            <h1 style={{ color: 'red', fontSize: '100px' }}> Avcoungt</h1>
+        <div className={styles.pageLayout}>
+            <LogoutForm />
         </div>
     )
 }

@@ -1,0 +1,28 @@
+$icon-box-bg-color: var(--color-bg-secondary);
+
+.left,
+.right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.middle {
+    max-width: 26.25rem;
+    width: 100%;
+}
+
+.iconBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.25rem;
+    transition: 0.2s ease;
+
+    &:hover {
+        background-color: $icon-box-bg-color;
+        cursor: pointer;
+    }
+}

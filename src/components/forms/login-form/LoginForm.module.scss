@@ -1,0 +1,18 @@
+$text-color: var(--color-white);
+$fp-text-color: var(--color-text-300);
+
+.passwordWrapper > span {
+    display: flex;
+    color: $fp-text-color;
+    width: fit-content;
+    margin-left: auto;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.75rem;
+    line-height: 1.5rem;
+    transition: 0.2s ease;
+
+    &:hover {
+        color: $text-color;
+    }
+}

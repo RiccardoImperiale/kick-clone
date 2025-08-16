@@ -1,11 +1,11 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { redirect } from 'next/navigation'
 import { createClient } from '../utils/supabase/server'
 import { SignUpSchema } from '../utils/validator'
+import { redirect } from 'next/navigation'
 
-export async function signup(formData: FormData) {
+export async function signUp(formData: FormData) {
     const supabase = await createClient()
 
     const payload = {
@@ -20,7 +20,7 @@ export async function signup(formData: FormData) {
         return { success: false, message: '', zErrors }
     }
 
-    const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
         email: payload.email,
         password: payload.password,
         options: {
@@ -30,9 +30,9 @@ export async function signup(formData: FormData) {
         },
     })
 
-    if (signUpError) {
-        return { success: false, message: signUpError?.message }
-    } else if (signUpData?.user?.identities?.length === 0) {
+    if (error) {
+        return { success: false, message: error?.message }
+    } else if (data?.user?.identities?.length === 0) {
         return {
             success: false,
             message: 'User already exists',
@@ -43,22 +43,34 @@ export async function signup(formData: FormData) {
     return { success: true, message: '' }
 }
 
-export async function login(formData: FormData) {
+export async function signIn(formData: FormData) {
     const supabase = await createClient()
 
-    // type-casting here for convenience
-    // in practice, you should validate your inputs
-    const data = {
+    const payload = {
         email: formData.get('email') as string,
         password: formData.get('password') as string,
     }
 
-    const { error } = await supabase.auth.signInWithPassword(data)
+    const { data, error } = await supabase.auth.signInWithPassword(payload)
+
+    if (error) {
+        return { success: false, message: error?.message }
+    }
+
+    // TODO create a use instace in profiles table
+    revalidatePath('/', 'layout')
+    return { success: true, message: '' }
+}
+
+export async function signOut() {
+    const supabase = await createClient()
+
+    const { error } = await supabase.auth.signOut()
 
     if (error) {
         redirect('/error')
     }
 
     revalidatePath('/', 'layout')
-    redirect('/account')
+    redirect('/')
 }

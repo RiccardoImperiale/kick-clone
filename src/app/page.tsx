@@ -1,8 +1,3 @@
 export default function Home() {
-    return (
-        <>
-            <main>main</main>
-            <footer>footer</footer>
-        </>
-    )
+    return <h1>Home</h1>
 }
