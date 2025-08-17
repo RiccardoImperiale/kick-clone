@@ -44,5 +44,12 @@ body {
 }
 
 main {
-    padding-top: 5rem;
+    padding-top: 60px;
+    display: flex;
+    height: 100vh;
+}
+
+a {
+    color: white;
+    text-decoration: none;
 }

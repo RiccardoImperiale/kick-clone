@@ -1,0 +1,99 @@
+$border-color: var(--color-bg-secondary);
+$tab-bg-color: var(--color-bg-secondary);
+$tab-hover-color: var(--color-border-secondary-500);
+$border-line-color: var(--color-border-secondary-500);
+$active-color: var(--color-bg-500);
+$text-info-color: var(--color-text-400);
+
+.sidebar {
+    width: 256px;
+    height: 100%;
+    padding: 0 12px;
+}
+
+.navbar {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 12px 0;
+    border-bottom: 2px solid $border-line-color;
+
+    a {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        width: 100%;
+        padding: 0.5rem 1rem 0.5rem 0.5rem;
+        border-radius: 0.25rem;
+        transition: 0.2s ease;
+        color: white;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        font-weight: 600;
+
+        &:hover {
+            background-color: $tab-hover-color;
+        }
+
+        &.active {
+            background-color: $tab-bg-color;
+        }
+    }
+}
+
+.channelsList {
+    color: white;
+    padding: 12px 0;
+
+    .title {
+        font-weight: 700;
+        font-size: 0.875rem;
+        line-height: 2rem;
+        margin-bottom: 0.75rem;
+    }
+}
+
+.channel {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+
+    .avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        overflow: hidden;
+        background-color: rebeccapurple;
+    }
+
+    .midBox {
+        flex-grow: 1;
+
+        font-size: 0.875rem;
+        font-weight: 700;
+
+        .info {
+            font-size: 0.75rem;
+            color: $text-info-color;
+        }
+    }
+
+    .liveActivity {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+
+        &.active {
+            background-color: $active-color;
+        }
+    }
+}

@@ -1,7 +1,7 @@
 import styles from './page.module.scss'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server'
-import { LogoutForm } from '@/components/forms/logout-form/LogoutForm'
+import { AppRoutes } from '@/settings/AppRoutes'
 
 export default async function Account() {
     const supabase = await createClient()
@@ -9,12 +9,8 @@ export default async function Account() {
     const { data, error } = await supabase.auth.getUser()
 
     if (!data.user || error) {
-        redirect('/')
+        redirect(AppRoutes.home)
     }
 
-    return (
-        <div className={styles.pageLayout}>
-            <LogoutForm />
-        </div>
-    )
+    return <div className={styles.pageLayout}>account</div>
 }

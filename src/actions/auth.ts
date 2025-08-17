@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache'
 import { createClient } from '@/utils/supabase/server'
 import { ResetPwdSchema, SignUpSchema } from '@/utils/validator'
 import { headers } from 'next/headers'
+import { AppRoutes } from '@/settings/AppRoutes'
 
 export async function signUp(formData: FormData) {
     const supabase = await createClient()
@@ -39,7 +40,7 @@ export async function signUp(formData: FormData) {
         }
     }
 
-    revalidatePath('/', 'layout')
+    revalidatePath(AppRoutes.home, 'layout')
     return { success: true, message: '' }
 }
 
@@ -70,7 +71,7 @@ export async function signIn(formData: FormData) {
         }
     }
 
-    revalidatePath('/', 'layout')
+    revalidatePath(AppRoutes.home, 'layout')
     return { success: true, message: '' }
 }
 
@@ -79,7 +80,7 @@ export async function signOut() {
 
     const { error } = await supabase.auth.signOut()
 
-    revalidatePath('/', 'layout')
+    revalidatePath(AppRoutes.home, 'layout')
 
     if (error) return { success: false }
     return { success: true }

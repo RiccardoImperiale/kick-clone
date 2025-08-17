@@ -7,6 +7,7 @@ import { resetPassword } from '@/actions/auth'
 import { ResetPwdError, validateResetPwd } from '@/utils/validator'
 import { ErrorMessage } from '@/components/error-message/ErrorMessage'
 import { useRouter } from 'next/navigation'
+import { AppRoutes } from '@/settings/AppRoutes'
 
 interface IResetPwdFormProps {
     onLoadingChange: (isLoading: boolean) => void
@@ -14,7 +15,7 @@ interface IResetPwdFormProps {
     code: string
 }
 
-export const ResetPwdForm = ({ onLoadingChange, onClose, code }: IResetPwdFormProps) => {
+export const ResetPwdForm = (props: IResetPwdFormProps) => {
     const router = useRouter()
     const [errorMsg, setErrorMsg] = useState<ResetPwdError>({})
     const [respMsg, setRespMsg] = useState('')
@@ -32,11 +33,11 @@ export const ResetPwdForm = ({ onLoadingChange, onClose, code }: IResetPwdFormPr
             return
         }
 
-        onLoadingChange(true)
-        const res = await resetPassword(formData, code)
+        props.onLoadingChange(true)
+        const res = await resetPassword(formData, props.code)
         if (res.success) {
-            onClose()
-            router.push('/')
+            props.onClose()
+            router.push(AppRoutes.home)
         } else {
             if (res.zErrors) {
                 setErrorMsg(res.zErrors)
@@ -44,7 +45,7 @@ export const ResetPwdForm = ({ onLoadingChange, onClose, code }: IResetPwdFormPr
                 setRespMsg(res.message)
             }
         }
-        onLoadingChange(false)
+        props.onLoadingChange(false)
     }
 
     return (

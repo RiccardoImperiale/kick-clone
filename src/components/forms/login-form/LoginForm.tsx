@@ -14,7 +14,7 @@ interface ILoginFormProps {
     onForgotPwdClick: () => void
 }
 
-export const LoginForm = ({ onLoadingChange, onClose, onForgotPwdClick }: ILoginFormProps) => {
+export const LoginForm = (props: ILoginFormProps) => {
     const router = useRouter()
     const [errorMsg, setErrorMsg] = useState<LoginError>({})
     const [respMsg, setRespMsg] = useState('')
@@ -32,15 +32,15 @@ export const LoginForm = ({ onLoadingChange, onClose, onForgotPwdClick }: ILogin
             return
         }
 
-        onLoadingChange(true)
+        props.onLoadingChange(true)
         const res = await signIn(formData)
         if (res.success) {
             router.push('/account')
-            onClose()
+            props.onClose()
         } else {
             setRespMsg(res.message)
         }
-        onLoadingChange(false)
+        props.onLoadingChange(false)
     }
 
     return (
@@ -48,7 +48,7 @@ export const LoginForm = ({ onLoadingChange, onClose, onForgotPwdClick }: ILogin
             <Input errorMsg={errorMsg.email} label="Email" id="email" name="email" autocomplete="email" />
             <div className={styles.passwordWrapper}>
                 <Input errorMsg={errorMsg.password} label="Password" type="password" id="password" name="password" autocomplete="current-password" />
-                <span onClick={onForgotPwdClick}>Forgot password?</span>
+                <span onClick={props.onForgotPwdClick}>Forgot password?</span>
             </div>
             <ErrorMessage message={respMsg} />
             <Button text="Log In" color="primary" type="submit" />

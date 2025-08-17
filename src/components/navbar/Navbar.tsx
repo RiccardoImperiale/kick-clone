@@ -13,12 +13,15 @@ import { User } from '@supabase/supabase-js'
 import { LoadingBar } from '@/components/loading-bar/LoadingBar'
 import { useLoadingStore } from '@/state/loadingStore'
 import { UserDropdown } from '@/components/user-dropdown/UserDropdown'
+import { AppRoutes } from '@/settings/AppRoutes'
+import { usePageLoading } from '@/hooks/usePageLoading'
 
 interface HeaderProps {
     user: User | null
 }
 
 export const Navbar = (props: HeaderProps) => {
+    usePageLoading()
     const router = useRouter()
     const isLoading = useLoadingStore(state => state.isLoading)
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -61,7 +64,7 @@ export const Navbar = (props: HeaderProps) => {
                     <div className={styles.iconBox}>
                         <BurgerIcon width={16} height={16} />
                     </div>
-                    <Image onClick={() => router.push('/')} src="/kick-logo.svg" alt="Logo" width={97} height={26} priority />
+                    <Image onClick={() => router.push(AppRoutes.home)} src="/kick-logo.svg" alt="Logo" width={97} height={26} priority />
                 </div>
                 <div className={styles.middle}>
                     <Search placeholder="Search" />

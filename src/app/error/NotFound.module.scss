@@ -1,0 +1,10 @@
+.notFound {
+    position: absolute;
+    background-color: black;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: gray;
+    z-index: 999;
+}

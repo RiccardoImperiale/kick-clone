@@ -11,6 +11,7 @@ import { SettingsIcon } from '@/assets/icons/SettingsIcon'
 import { useLoadingStore } from '@/state/loadingStore'
 import { signOut } from '@/actions/auth'
 import { useRouter } from 'next/navigation'
+import { AppRoutes } from '@/settings/AppRoutes'
 
 interface UserDropdownProps {
     user: User | null
@@ -28,7 +29,7 @@ export const UserDropdown = (props: UserDropdownProps) => {
         const res = await signOut()
         if (res.success) {
             setIsLoading(false)
-            router.push('/')
+            router.push(AppRoutes.home)
         } else {
             router.push('/error')
         }

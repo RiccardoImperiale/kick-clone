@@ -12,7 +12,7 @@ interface ISignUpFormProps {
     onClose: () => void
 }
 
-export const RegisterForm = ({ onLoadingChange, onClose }: ISignUpFormProps) => {
+export const RegisterForm = (props: ISignUpFormProps) => {
     const [errorMsg, setErrorMsg] = useState<SignUpError>({})
     const [respMsg, setRespMsg] = useState('')
 
@@ -29,10 +29,10 @@ export const RegisterForm = ({ onLoadingChange, onClose }: ISignUpFormProps) => 
             return
         }
 
-        onLoadingChange(true)
+        props.onLoadingChange(true)
         const res = await signUp(formData)
         if (res.success) {
-            onClose()
+            props.onClose()
         } else {
             if (res.zErrors) {
                 setErrorMsg(res.zErrors)
@@ -40,7 +40,7 @@ export const RegisterForm = ({ onLoadingChange, onClose }: ISignUpFormProps) => 
                 setRespMsg(res.message)
             }
         }
-        onLoadingChange(false)
+        props.onLoadingChange(false)
     }
 
     return (
