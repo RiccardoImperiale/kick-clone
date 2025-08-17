@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import '@/styles/globals.scss'
 import { Header } from '@/components/header/Header'
-import { Sidebar } from '@/components/sidebar/Sidebar'
+import { SidebarCtrl } from '@/components/sidebar/SidebarCtrl'
 
 const geistSans = Geist({
     variable: '--font-geist-sans',
@@ -29,7 +29,7 @@ export default function RootLayout({
             <body className={`${geistSans.variable} ${geistMono.variable}`}>
                 <Header />
                 <main>
-                    <Sidebar />
+                    <SidebarCtrl />
                     {children}
                 </main>
                 {/* <footer>footer</footer> */}

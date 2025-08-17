@@ -1,6 +1,6 @@
 'use client'
 
-import { setLivestreamsMockData } from '@/actions/lifestreams'
+import { setLivestreamsMockData } from '@/actions/livestreams'
 import { useEffect, useState } from 'react'
 
 export default function Account() {

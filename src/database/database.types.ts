@@ -19,6 +19,7 @@ export type Database = {
           categories: string[]
           created_at: string
           id: string
+          is_live: boolean
           name: string | null
           profile_image_url: string | null
           username: string
@@ -27,6 +28,7 @@ export type Database = {
           categories: string[]
           created_at?: string
           id?: string
+          is_live: boolean
           name?: string | null
           profile_image_url?: string | null
           username: string
@@ -35,6 +37,7 @@ export type Database = {
           categories?: string[]
           created_at?: string
           id?: string
+          is_live?: boolean
           name?: string | null
           profile_image_url?: string | null
           username?: string

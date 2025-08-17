@@ -15,6 +15,7 @@ import { useLoadingStore } from '@/state/loadingStore'
 import { UserDropdown } from '@/components/user-dropdown/UserDropdown'
 import { AppRoutes } from '@/settings/AppRoutes'
 import { usePageLoading } from '@/hooks/usePageLoading'
+import { useSidebarStore } from '@/state/sidebarStore'
 
 interface HeaderProps {
     user: User | null
@@ -24,6 +25,7 @@ export const Navbar = (props: HeaderProps) => {
     usePageLoading()
     const router = useRouter()
     const isLoading = useLoadingStore(state => state.isLoading)
+    const setIsSidebarOpen = useSidebarStore(state => state.toggleIsOpen)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [initialTab, setInitialTab] = useState<Tab | null>(null)
     const [isResetPwd, setIsResetPwd] = useState(false)
@@ -53,7 +55,7 @@ export const Navbar = (props: HeaderProps) => {
             setIsModalOpen(true)
         }
         window.history.replaceState({}, document.title, window.location.pathname)
-    }, [])
+    }, [router])
 
     return (
         <>
@@ -61,7 +63,7 @@ export const Navbar = (props: HeaderProps) => {
             <LoadingBar isLoading={isLoading} />
             <nav>
                 <div className={styles.left}>
-                    <div className={styles.iconBox}>
+                    <div className={styles.iconBox} onClick={setIsSidebarOpen}>
                         <BurgerIcon width={16} height={16} />
                     </div>
                     <Image onClick={() => router.push(AppRoutes.home)} src="/kick-logo.svg" alt="Logo" width={97} height={26} priority />

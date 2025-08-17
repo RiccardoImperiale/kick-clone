@@ -84,7 +84,7 @@ export const ForgotPwdForm = ({ onLoadingChange, onGoBack }: IForgotPwdFormProps
             {isEmailSent ? (
                 <>
                     <div className={styles.email}>{email}</div>
-                    <p className={styles.noCode}>Didn't receive a code?</p>
+                    <p className={styles.noCode}>Didn&apos;t receive a code?</p>
                 </>
             ) : (
                 <Input errorMsg={errorMsg} name="email" setValue={setEmail} label="Email" id="email" autocomplete="email" />

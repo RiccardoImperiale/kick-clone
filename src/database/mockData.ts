@@ -16,6 +16,7 @@ export const livestreams: Tables<'livestreams'>[] = [
         created_at: `2024-07-20T10:00:00Z`,
         profile_image_url: 'https://randomuser.me/api/portraits/men/1.jpg',
         username: 'BeastMaster64',
+        is_live: true,
     },
     {
         id: livestreamUUIDs[1],
@@ -24,6 +25,7 @@ export const livestreams: Tables<'livestreams'>[] = [
         created_at: `2024-07-20T10:00:00Z`,
         profile_image_url: 'https://randomuser.me/api/portraits/men/2.jpg',
         username: 'GamingGuru',
+        is_live: true,
     },
     {
         id: livestreamUUIDs[2],
@@ -32,6 +34,7 @@ export const livestreams: Tables<'livestreams'>[] = [
         created_at: `2024-07-20T10:00:00Z`,
         profile_image_url: 'https://randomuser.me/api/portraits/women/3.jpg',
         username: 'StreamQueen',
+        is_live: false,
     },
     {
         id: livestreamUUIDs[3],
@@ -40,6 +43,7 @@ export const livestreams: Tables<'livestreams'>[] = [
         created_at: `2024-07-20T10:00:00Z`,
         profile_image_url: 'https://randomuser.me/api/portraits/men/4.jpg',
         username: 'CodeWizard',
+        is_live: false,
     },
     {
         id: livestreamUUIDs[4],
@@ -48,5 +52,6 @@ export const livestreams: Tables<'livestreams'>[] = [
         created_at: `2024-07-20T10:00:00Z`,
         profile_image_url: 'https://randomuser.me/api/portraits/women/5.jpg',
         username: 'ArtisticSoul',
+        is_live: true,
     },
 ]
