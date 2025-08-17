@@ -38,7 +38,11 @@ export const ResetPwdForm = ({ onLoadingChange, onClose, code }: IResetPwdFormPr
             onClose()
             router.push('/')
         } else {
-            setRespMsg(res.message)
+            if (res.zErrors) {
+                setErrorMsg(res.zErrors)
+            } else {
+                setRespMsg(res.message)
+            }
         }
         onLoadingChange(false)
     }

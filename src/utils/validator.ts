@@ -8,6 +8,16 @@ export const SignUpSchema = z.object({
     password: z.string().regex(passwordRegex, 'Password must be min 8 characters, 1 special character, 1 number'),
 })
 
+export const ResetPwdSchema = z
+    .object({
+        newPassword: z.string().regex(passwordRegex, 'Password must be min 8 characters, 1 special character, 1 number'),
+        confirmPassword: z.string(),
+    })
+    .refine(data => data.newPassword === data.confirmPassword, {
+        message: 'Passwords do not match',
+        path: ['confirmPassword'],
+    })
+
 export interface SignUpError {
     email?: string
     username?: string

@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache'
 import { createClient } from '@/utils/supabase/server'
-import { SignUpSchema } from '@/utils/validator'
+import { ResetPwdSchema, SignUpSchema } from '@/utils/validator'
 import { headers } from 'next/headers'
 
 export async function signUp(formData: FormData) {
@@ -107,6 +107,18 @@ export async function forgotPassword(formData: FormData) {
 
 export async function resetPassword(formData: FormData, code: string) {
     const supabase = await createClient()
+
+    const payload = {
+        newPassword: formData.get('newPassword') as string,
+        confirmPassword: formData.get('confirmPassword') as string,
+    }
+
+    const validation = ResetPwdSchema.safeParse(payload)
+    if (!validation.success) {
+        const zErrors = Object.fromEntries(validation.error.issues.map(issue => [issue.path[0], issue.message]))
+        return { success: false, message: '', zErrors }
+    }
+
     const { error: codeError } = await supabase.auth.exchangeCodeForSession(code)
 
     if (codeError) {
