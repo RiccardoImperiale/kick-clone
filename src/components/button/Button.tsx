@@ -30,7 +30,7 @@ export const Button = (props: IButtonPrimaryProps) => {
     }
 
     return (
-        <button onClick={props.onClick} type={props.type ? props.type : 'button'} className={`${styles.btn} ${btnColor}`} disabled={props.isDisabled}>
+        <button onClick={props.onClick} type={props.type ?? 'submit'} className={`${styles.btn} ${btnColor}`} disabled={props.isDisabled}>
             {props.text && props.text}
         </button>
     )

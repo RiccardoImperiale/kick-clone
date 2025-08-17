@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { createClient } from '@/utils/supabase/server'
 import { SignUpSchema } from '@/utils/validator'
+import { headers } from 'next/headers'
 
 export async function signUp(formData: FormData) {
     const supabase = await createClient()
@@ -56,7 +57,19 @@ export async function signIn(formData: FormData) {
         return { success: false, message: error?.message }
     }
 
-    // TODO create a use instace in profiles table
+    const { data: existingUser } = await supabase.from('profiles').select('*').eq('email', payload?.email).single()
+
+    if (!existingUser) {
+        const { error: insertError } = await supabase.from('profiles').insert({
+            email: data?.user.email,
+            username: data?.user.user_metadata.username,
+        })
+
+        if (insertError) {
+            return { success: false, message: insertError?.message }
+        }
+    }
+
     revalidatePath('/', 'layout')
     return { success: true, message: '' }
 }
@@ -71,3 +84,57 @@ export async function signOut() {
     if (error) return { success: false }
     return { success: true }
 }
+
+export async function forgotPassword(formData: FormData) {
+    const supabase = await createClient()
+    const email = formData.get('email') as string
+
+    const origin = (await headers()).get('origin')
+
+    const { data: profile, error: profileError } = await supabase.from('profiles').select('id').eq('email', email).single()
+
+    if (!profile || profileError) {
+        return { success: false, message: "We can't find a user with that email address." }
+    }
+
+    const { error } = await supabase.auth.resetPasswordForEmail(formData.get('email') as string, {
+        redirectTo: `${origin}?reset=password`,
+    })
+
+    if (error) return { success: false, message: error?.message }
+    return { success: true, message: '' }
+}
+
+export async function resetPassword(formData: FormData, code: string) {
+    const supabase = await createClient()
+    const { error: codeError } = await supabase.auth.exchangeCodeForSession(code)
+
+    if (codeError) {
+        return { success: false, message: codeError.message }
+    }
+
+    const { error } = await supabase.auth.updateUser({
+        password: formData.get('newPassword') as string,
+    })
+
+    if (error) {
+        return { success: false, message: error.message }
+    }
+
+    return { success: true, message: '' }
+}
+
+// export async function verifyOtp(formData: FormData) {
+//     const supabase = await createClient()
+//     const email = formData.get('email') as string
+//     const token = formData.get('token') as string
+
+//     const { error } = await supabase.auth.verifyOtp({
+//         email,
+//         token,
+//         type: 'recovery',
+//     })
+
+//     if (error) return { success: false, message: error?.message }
+//     return { success: true, message: '' }
+// }

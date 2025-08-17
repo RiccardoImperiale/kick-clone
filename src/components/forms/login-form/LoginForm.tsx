@@ -11,29 +11,26 @@ import { useRouter } from 'next/navigation'
 interface ILoginFormProps {
     onLoadingChange: (isLoading: boolean) => void
     onClose: () => void
+    onForgotPwdClick: () => void
 }
 
-export const LoginForm = ({ onLoadingChange, onClose }: ILoginFormProps) => {
+export const LoginForm = ({ onLoadingChange, onClose, onForgotPwdClick }: ILoginFormProps) => {
     const router = useRouter()
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
     const [errorMsg, setErrorMsg] = useState<LoginError>({})
     const [respMsg, setRespMsg] = useState('')
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+
+        const formData = new FormData(e.currentTarget)
 
         setErrorMsg({})
         // setRespMsg('')
-        const formErrors = validateLogin({ email, password })
+        const formErrors = validateLogin(formData)
         if (Object.keys(formErrors).length > 0) {
             setErrorMsg(formErrors)
             return
         }
-
-        const formData = new FormData()
-        formData.append('email', email)
-        formData.append('password', password)
 
         onLoadingChange(true)
         const res = await signIn(formData)
@@ -48,19 +45,10 @@ export const LoginForm = ({ onLoadingChange, onClose }: ILoginFormProps) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <Input errorMsg={errorMsg.email} label="Email" id="email" setValue={setEmail} value={email} autocomplete="email" />
+            <Input errorMsg={errorMsg.email} label="Email" id="email" name="email" autocomplete="email" />
             <div className={styles.passwordWrapper}>
-                <Input
-                    errorMsg={errorMsg.password}
-                    label="Password"
-                    type="password"
-                    id="password"
-                    setValue={setPassword}
-                    value={password}
-                    autocomplete="current-password"
-                    name="password"
-                />
-                <span>Forgot password?</span>
+                <Input errorMsg={errorMsg.password} label="Password" type="password" id="password" name="password" autocomplete="current-password" />
+                <span onClick={onForgotPwdClick}>Forgot password?</span>
             </div>
             <ErrorMessage message={respMsg} />
             <Button text="Log In" color="primary" type="submit" />

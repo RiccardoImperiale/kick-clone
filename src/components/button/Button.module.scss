@@ -25,6 +25,7 @@ $btn-neutral-hover-bg-color: var(--color-bg-secondary);
 
     &:hover {
         background-color: $btn-primary-hover-bg-color;
+        cursor: pointer;
     }
 }
 
@@ -35,6 +36,14 @@ $btn-neutral-hover-bg-color: var(--color-bg-secondary);
     &:hover {
         background-color: $btn-neutral-hover-bg-color;
     }
+}
+
+.disabled {
+    background-color: var(--color-bg-600);
+    opacity: 0.5;
+    cursor: default;
+    color: $btn-primary-text-color;
+    pointer-events: none;
 }
 
 /* .secondary {
@@ -49,6 +58,7 @@ $btn-neutral-hover-bg-color: var(--color-bg-secondary);
         background-color: $btn-secondary-active-color;
     }
 } */
+
 /* 
 .neutral {
     background-color: transparent;
@@ -68,8 +78,3 @@ $btn-neutral-hover-bg-color: var(--color-bg-secondary);
         }
     }
 } */
-
-// .disabled {
-//     background-color: $btn-primary-light-color;
-//     opacity: 0.5;
-// }

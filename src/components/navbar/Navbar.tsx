@@ -12,7 +12,7 @@ import { AuthModal, Tab } from '@/components/auth-modal/AuthModal'
 import { User } from '@supabase/supabase-js'
 import { LoadingBar } from '@/components/loading-bar/LoadingBar'
 import { useLoadingStore } from '@/state/loadingStore'
-import { UserDropdown } from '../user-dropdown/UserDropdown'
+import { UserDropdown } from '@/components/user-dropdown/UserDropdown'
 
 interface HeaderProps {
     user: User | null
@@ -23,28 +23,38 @@ export const Navbar = (props: HeaderProps) => {
     const isLoading = useLoadingStore(state => state.isLoading)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [initialTab, setInitialTab] = useState<Tab | null>(null)
+    const [isResetPwd, setIsResetPwd] = useState(false)
+    const [token, setToken] = useState<string>('')
 
     const handleModalOpen = (activeTab: Tab) => {
         setIsModalOpen(true)
         setInitialTab(activeTab)
+        setIsResetPwd(false)
+        setToken('')
     }
 
     useEffect(() => {
         const params = new URLSearchParams(window.location.search)
-        const code = params.get('code')
+        const token = params.get('code')
+        const resetPwd = params.get('reset')
         const error = params.get('error')
-        if (code) {
+
+        if (error) {
+            router.push('/error')
+        } else if (resetPwd) {
+            setToken(token || '')
+            setIsModalOpen(true)
+            setIsResetPwd(true)
+        } else if (token) {
             setInitialTab('Log In')
             setIsModalOpen(true)
-        } else if (error) {
-            router.push('/error')
         }
         window.history.replaceState({}, document.title, window.location.pathname)
     }, [])
 
     return (
         <>
-            {isModalOpen && <AuthModal onClose={() => setIsModalOpen(false)} initialTab={initialTab} />}
+            {isModalOpen && <AuthModal onClose={() => setIsModalOpen(false)} initialTab={initialTab} isResetPwd={isResetPwd} token={token} />}
             <LoadingBar isLoading={isLoading} />
             <nav>
                 <div className={styles.left}>

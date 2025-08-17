@@ -1,0 +1,62 @@
+$text-color: var(--color-white);
+$box-bg-color: var(--color-bg-secondary);
+$box-hover-color: var(--color-bg-secondary-300);
+$text-nocode-color: var(--color-border-secondary-400);
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    .title {
+        color: $text-color;
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+        font-weight: 700;
+    }
+}
+
+.subtitle {
+    color: $text-color;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    margin-top: 0.4rem;
+}
+
+.iconBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 0.25rem;
+    transition: 0.2s ease;
+    background-color: $box-bg-color;
+
+    &:hover {
+        cursor: pointer;
+        background-color: $box-hover-color;
+    }
+}
+
+.btnWrapper {
+    margin-top: 0.4rem;
+
+    button {
+        width: 100%;
+    }
+}
+
+.email {
+    font-size: 1.2rem;
+    line-height: 1.25rem;
+    font-weight: 800;
+}
+
+.noCode {
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $text-nocode-color;
+}

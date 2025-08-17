@@ -19,31 +19,61 @@ export interface LoginError {
     password?: string
 }
 
-export const validateSignUp = (formData: SignUpError) => {
+export interface ResetPwdError {
+    newPassword?: string
+    confirmPassword?: string
+}
+
+export const validateSignUp = (formData: FormData) => {
     const formErrors: SignUpError = {}
 
-    if (!formData.email) formErrors.email = 'Email required'
+    const email = formData.get('email') as string | null
+    const username = formData.get('username') as string | null
+    const password = formData.get('password') as string | null
 
-    if (!formData.username) {
+    if (!email) formErrors.email = 'Email required'
+
+    if (!username) {
         formErrors.username = 'Username required'
-    } else if (formData.username.length < 3) {
+    } else if (username.length < 3) {
         formErrors.username = 'Username must be at least 3 characters long'
     }
 
-    if (!formData.password) {
+    if (!password) {
         formErrors.password = 'Password required'
-    } else if (!passwordRegex.test(formData.password)) {
+    } else if (!passwordRegex.test(password)) {
         formErrors.password = 'Password must be min 8 characters, 1 special character, 1 number'
     }
 
     return formErrors
 }
 
-export const validateLogin = (formData: LoginError) => {
+export const validateLogin = (formData: FormData) => {
     const formErrors: LoginError = {}
 
-    if (!formData.email) formErrors.email = 'Email required'
-    if (!formData.password) formErrors.password = 'Password required'
+    if (!formData.get('email')) formErrors.email = 'Email required'
+    if (!formData.get('password')) formErrors.password = 'Password required'
+
+    return formErrors
+}
+
+export const validateResetPwd = (formData: FormData) => {
+    const formErrors: ResetPwdError = {}
+
+    const password = formData.get('newPassword') as string | null
+    const confirmPassword = formData.get('confirmPassword') as string | null
+
+    if (!password) {
+        formErrors.newPassword = 'Password required'
+    } else if (!passwordRegex.test(password)) {
+        formErrors.newPassword = 'Password must be min 8 characters, 1 special character, 1 number'
+    }
+
+    if (!confirmPassword) {
+        formErrors.confirmPassword = 'Password required'
+    } else if (password !== confirmPassword) {
+        formErrors.confirmPassword = 'Passwords do not match'
+    }
 
     return formErrors
 }
