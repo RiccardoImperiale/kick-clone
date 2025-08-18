@@ -1,5 +1,17 @@
 import type { Tables } from './database.types'
 
+import justChatting from '../assets/categories/just-chatting.webp'
+import fortnite from '../assets/categories/fortnite.webp'
+import gta from '../assets/categories/gta.webp'
+import irl from '../assets/categories/irl.webp'
+import minecraft from '../assets/categories/minecraft.webp'
+import warzone from '../assets/categories/warzone.webp'
+import vtubers from '../assets/categories/vtubers.webp'
+import battleGrounds from '../assets/categories/battlegrounds.webp'
+import counterStrike from '../assets/categories/counter-strike.webp'
+import leagueOfLegends from '../assets/categories/lol.webp'
+import dota2 from '../assets/categories/dota2.webp'
+
 const categoriesUUIDs = [
     'a1b2c3d4-e5f6-7890-1234-567890abcdef',
     'b2c3d4e5-f6a7-8901-2345-67890abcdef1',
@@ -12,10 +24,6 @@ const categoriesUUIDs = [
     'c9d0e1f2-a3b4-5678-9012-cdef12345678',
     'd0e1f2a3-b4c5-6789-0123-def123456789',
     'e1f2a3b4-c5d6-7890-1234-ef1234567890',
-    'f2a3b4c5-d6e7-8901-2345-f12345678901',
-    'a3b4c5d6-e7f8-9012-3456-1234567890ab',
-    'b4c5d6e7-f8a9-0123-4567-234567890abc',
-    'c5d6e7f8-a9b0-1234-5678-34567890abcd',
 ]
 
 const livestreamUUIDs = [
@@ -35,107 +43,79 @@ export const categories: Tables<'categories'>[] = [
     {
         id: categoriesUUIDs[0],
         created_at: '2024-07-20T10:00:00Z',
-        name: 'Gaming',
+        name: 'Just Chatting',
         tags: ['IRL', 'RPG'],
-        image_url: 'https://picsum.photos/id/31/200/300',
+        image_url: justChatting.src,
     },
     {
         id: categoriesUUIDs[1],
         created_at: '2024-07-20T10:01:00Z',
-        name: 'Music',
+        name: 'Fortnite',
         tags: ['Live', 'Concerts'],
-        image_url: 'https://picsum.photos/id/32/200/300',
+        image_url: fortnite.src,
     },
     {
         id: categoriesUUIDs[2],
         created_at: '2024-07-20T10:02:00Z',
-        name: 'Sports',
+        name: 'Grand Theft Auto V',
         tags: ['Football', 'Basketball'],
-        image_url: 'https://picsum.photos/id/33/200/300',
+        image_url: gta.src,
     },
     {
         id: categoriesUUIDs[3],
         created_at: '2024-07-20T10:03:00Z',
         name: 'IRL',
         tags: ['Lifestyle', 'Vlogs'],
-        image_url: 'https://picsum.photos/id/34/200/300',
+        image_url: irl.src,
     },
     {
         id: categoriesUUIDs[4],
         created_at: '2024-07-20T10:04:00Z',
-        name: 'Just Chatting',
+        name: 'Minecraft',
         tags: ['Talk', 'Q&A'],
-        image_url: 'https://picsum.photos/id/35/200/300',
+        image_url: minecraft.src,
     },
     {
         id: categoriesUUIDs[5],
         created_at: '2024-07-20T10:05:00Z',
-        name: 'Education',
+        name: 'Warzone',
         tags: ['Science', 'Coding'],
-        image_url: 'https://picsum.photos/id/36/200/300',
+        image_url: warzone.src,
     },
     {
         id: categoriesUUIDs[6],
         created_at: '2024-07-20T10:06:00Z',
-        name: 'News',
+        name: 'Vtubers',
         tags: ['Politics', 'World'],
-        image_url: 'https://picsum.photos/id/37/200/300',
+        image_url: vtubers.src,
     },
     {
         id: categoriesUUIDs[7],
         created_at: '2024-07-20T10:07:00Z',
-        name: 'Tech',
+        name: 'Battlegrounds',
         tags: ['AI', 'Startups'],
-        image_url: 'https://picsum.photos/id/38/200/300',
+        image_url: battleGrounds.src,
     },
     {
         id: categoriesUUIDs[8],
         created_at: '2024-07-20T10:08:00Z',
-        name: 'Cooking',
+        name: 'Counter-Strike',
         tags: ['Food', 'Recipes'],
-        image_url: 'https://picsum.photos/id/39/200/300',
+        image_url: counterStrike.src,
     },
     {
         id: categoriesUUIDs[9],
         created_at: '2024-07-20T10:09:00Z',
-        name: 'Fitness',
+        name: 'League of Legends',
         tags: ['Workout', 'Health'],
-        image_url: 'https://picsum.photos/id/40/200/300',
+        image_url: leagueOfLegends.src,
     },
     {
         id: categoriesUUIDs[10],
         created_at: '2024-07-20T10:10:00Z',
-        name: 'Travel',
+        name: 'Dota 2',
         tags: ['Adventure', 'Vlogs'],
-        image_url: 'https://picsum.photos/id/41/200/300',
-    },
-    {
-        id: categoriesUUIDs[11],
-        created_at: '2024-07-20T10:11:00Z',
-        name: 'Art',
-        tags: ['Drawing', 'Painting'],
-        image_url: 'https://picsum.photos/id/42/200/300',
-    },
-    {
-        id: categoriesUUIDs[12],
-        created_at: '2024-07-20T10:12:00Z',
-        name: 'Movies',
-        tags: ['Reviews', 'Cinema'],
-        image_url: 'https://picsum.photos/id/43/200/300',
-    },
-    {
-        id: categoriesUUIDs[13],
-        created_at: '2024-07-20T10:13:00Z',
-        name: 'Esports',
-        tags: ['LOL', 'CSGO'],
-        image_url: 'https://picsum.photos/id/44/200/300',
-    },
-    {
-        id: categoriesUUIDs[14],
-        created_at: '2024-07-20T10:14:00Z',
-        name: 'Podcasts',
-        tags: ['Interviews', 'Talk'],
-        image_url: 'https://picsum.photos/id/45/200/300',
+        image_url: dota2.src,
     },
 ]
 

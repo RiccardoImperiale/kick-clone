@@ -14,15 +14,16 @@ import { LoadingBar } from '@/components/loading-bar/LoadingBar'
 import { useLoadingStore } from '@/state/loadingStore'
 import { UserDropdown } from '@/components/user-dropdown/UserDropdown'
 import { AppRoutes } from '@/settings/AppRoutes'
-import { usePageLoading } from '@/hooks/usePageLoading'
 import { useSidebarStore } from '@/state/sidebarStore'
+// import { usePageLoading } from '@/hooks/usePageLoading'
 
 interface HeaderProps {
     user: User | null
 }
 
 export const Navbar = (props: HeaderProps) => {
-    usePageLoading()
+    // TODO remove
+    // usePageLoading()
     const router = useRouter()
     const isLoading = useLoadingStore(state => state.isLoading)
     const setIsSidebarOpen = useSidebarStore(state => state.toggleIsOpen)

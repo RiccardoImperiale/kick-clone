@@ -7,7 +7,7 @@ interface CategoryCardProps {
     number: number
     title: string
     image: string
-    tags: string[]
+    tags: string[] | null
 }
 
 export const CategoryCard = (props: CategoryCardProps) => {
@@ -22,7 +22,7 @@ export const CategoryCard = (props: CategoryCardProps) => {
                 {/* <div className={styles.category}>category</div>
                 <div className={styles.name}>name</div> */}
                 <div className={styles.tags}>
-                    {props.tags.map((tag, index) => (
+                    {props.tags?.map((tag, index) => (
                         <Pill key={index} text={tag} />
                     ))}
                 </div>

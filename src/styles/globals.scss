@@ -8,8 +8,7 @@ html,
 body {
     width: 100vw;
     height: 100vh;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden;
 }
 
 body {
@@ -41,12 +40,6 @@ body {
 ::-webkit-scrollbar-thumb {
     background: $scrollbar-thumb-color;
     border-radius: 5px;
-}
-
-main {
-    padding-top: 60px;
-    display: flex;
-    height: 100vh;
 }
 
 a {

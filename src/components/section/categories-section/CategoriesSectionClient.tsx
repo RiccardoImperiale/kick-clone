@@ -1,17 +1,22 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { use, useEffect, useState } from 'react'
 import styles from './CategoriesSection.module.scss'
 import { CategoryCard } from '@/components/card/category-card/CategoryCard'
 import Link from 'next/link'
 import { AppRoutes } from '@/settings/AppRoutes'
+import { Tables } from '@/database/database.types'
+import { useLoadingStore } from '@/state/loadingStore'
+import { Loader } from '@/components/loader/Loader'
+import { is } from 'zod/locales'
 
 interface CategoriesSectionClientProps {
-    topCategories: any[]
+    topCategories: Tables<'categories'>[]
 }
 
-export const CategoriesSectionSizing = ({ topCategories }: CategoriesSectionClientProps) => {
+export const CategoriesSectionClient = ({ topCategories }: CategoriesSectionClientProps) => {
     const [visibleCategories, setVisibleCategories] = useState(topCategories)
+    const isLoading = useLoadingStore(state => state.isLoading)
     const [columns, setColumns] = useState(7)
 
     useEffect(() => {
@@ -47,6 +52,14 @@ export const CategoriesSectionSizing = ({ topCategories }: CategoriesSectionClie
         return () => window.removeEventListener('resize', handleResize)
     }, [topCategories])
 
+    const categoriesView = (
+        <div className={styles.streamPreviews} style={{ gridTemplateColumns: `repeat(${columns}, 1fr)` }}>
+            {visibleCategories.map((category, index) => (
+                <CategoryCard key={category.id} number={index + 1} image={category.image_url} title={category.name} tags={category.tags} />
+            ))}
+        </div>
+    )
+
     return (
         <section className={styles.sectionLayout}>
             <div className={styles.sectionHeader}>
@@ -55,11 +68,7 @@ export const CategoriesSectionSizing = ({ topCategories }: CategoriesSectionClie
                     <span>View all</span>
                 </Link>
             </div>
-            <div className={styles.streamPreviews} style={{ gridTemplateColumns: `repeat(${columns}, 1fr)` }}>
-                {visibleCategories.map((category, index) => (
-                    <CategoryCard key={category.id} number={index + 1} image={category.image_url} title={category.name} tags={category.tags} />
-                ))}
-            </div>
+            {isLoading ? <Loader /> : categoriesView}
         </section>
     )
 }

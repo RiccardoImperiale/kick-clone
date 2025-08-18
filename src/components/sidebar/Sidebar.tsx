@@ -48,39 +48,42 @@ export const Sidebar = (props: SidebarProps) => {
     }, [setIsOpen])
 
     return (
-        <aside className={`${styles.sidebar} ${!isOpen && styles.compressed}`}>
-            <nav className={styles.navbar}>
-                <Link href={AppRoutes.home} className={isActive(AppRoutes.home) ? styles.active : ''}>
-                    <div className={styles.iconBox}>
-                        <HomeIcon width={16} height={16} />
+        <>
+            <aside className={`${styles.sidebar} ${!isOpen && styles.compressed}`}>
+                <nav className={styles.navbar}>
+                    <Link href={AppRoutes.home} className={isActive(AppRoutes.home) ? styles.active : ''}>
+                        <div className={styles.iconBox}>
+                            <HomeIcon width={16} height={16} />
+                        </div>
+                        {isOpen && <span>Home</span>}
+                    </Link>
+                    <Link href={AppRoutes.browse} className={isActive(AppRoutes.browse) ? styles.active : ''}>
+                        <div className={styles.iconBox}>
+                            <BrowseIcon width={16} height={16} />
+                        </div>
+                        {isOpen && <span>Browse</span>}
+                    </Link>
+                    <Link href={AppRoutes.following} className={isActive(AppRoutes.following) ? styles.active : ''}>
+                        <div className={styles.iconBox}>
+                            <FollowingIcon width={16} height={16} />
+                        </div>
+                        {isOpen && <span>Following</span>}
+                    </Link>
+                </nav>
+                {isOpen ? (
+                    <div className={styles.titleBox}>Recommended</div>
+                ) : (
+                    <div className={styles.titleBoxComp}>
+                        <LiveIcon width={16} height={16} />
                     </div>
-                    {isOpen && <span>Home</span>}
-                </Link>
-                <Link href={AppRoutes.browse} className={isActive(AppRoutes.browse) ? styles.active : ''}>
-                    <div className={styles.iconBox}>
-                        <BrowseIcon width={16} height={16} />
-                    </div>
-                    {isOpen && <span>Browse</span>}
-                </Link>
-                <Link href={AppRoutes.following} className={isActive(AppRoutes.following) ? styles.active : ''}>
-                    <div className={styles.iconBox}>
-                        <FollowingIcon width={16} height={16} />
-                    </div>
-                    {isOpen && <span>Following</span>}
-                </Link>
-            </nav>
-            {isOpen ? (
-                <div className={styles.titleBox}>Recommended</div>
-            ) : (
-                <div className={styles.titleBoxComp}>
-                    <LiveIcon width={16} height={16} />
+                )}
+                <div className={styles.channelsList}>
+                    {props.livestreams?.map(livestream => (
+                        <RecommendedCard key={livestream.id} isOpen={isOpen} livestream={livestream} />
+                    ))}
                 </div>
-            )}
-            <div className={styles.channelsList}>
-                {props.livestreams?.map(livestream => (
-                    <RecommendedCard key={livestream.id} isOpen={isOpen} livestream={livestream} />
-                ))}
-            </div>
-        </aside>
+            </aside>
+            {isOpen && <div onClick={() => setIsOpen(false)} className={styles.darkFilter} />}
+        </>
     )
 }

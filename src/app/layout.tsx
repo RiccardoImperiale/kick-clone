@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import styles from '@/styles/layout.module.scss'
 import { Geist, Geist_Mono } from 'next/font/google'
 import '@/styles/globals.scss'
 import { Header } from '@/components/header/Header'
@@ -28,9 +29,12 @@ export default function RootLayout({
         <html lang="en">
             <body className={`${geistSans.variable} ${geistMono.variable}`}>
                 <Header />
-                <main>
+                <main className={styles.layout}>
                     <SidebarCtrl />
-                    {children}
+                    <div className={styles.content}>
+                        {children}
+                        {/* <div className={styles.darkFilter} /> */}
+                    </div>
                 </main>
                 {/* <footer>footer</footer> */}
             </body>

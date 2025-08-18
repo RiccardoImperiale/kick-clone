@@ -10,10 +10,7 @@ type Livestream = Tables<'livestreams'>
 export async function setCategoriesMockData(): Promise<Category[]> {
     const supabase = await createClient()
 
-    const categoryIds = categories.map(c => c.id)
-
-    await supabase.from('categories').delete().in('id', categoryIds)
-
+    await supabase.from('categories').delete().neq('id', '')
     const { data, error } = await supabase.from('categories').insert(categories).select()
 
     if (error) {
@@ -29,8 +26,7 @@ export async function setLivestreamsMockData(): Promise<Livestream[]> {
 
     await setCategoriesMockData()
 
-    const livestreamIds = livestreams.map(l => l.id)
-    await supabase.from('livestreams').delete().in('id', livestreamIds)
+    await supabase.from('livestreams').delete().neq('id', '')
 
     const { data, error } = await supabase.from('livestreams').insert(livestreams).select()
 
