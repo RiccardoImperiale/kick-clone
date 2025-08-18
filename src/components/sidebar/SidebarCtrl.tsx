@@ -1,8 +1,8 @@
-import { getLivestreams } from '@/actions/livestreams'
+import { getRecommended } from '@/actions/livestreams'
 import { Sidebar } from './Sidebar'
 
 export const SidebarCtrl = async () => {
-    const livestreams = await getLivestreams()
+    const recommended = await getRecommended()
 
-    return <Sidebar livestreams={livestreams} />
+    return <Sidebar livestreams={recommended} />
 }

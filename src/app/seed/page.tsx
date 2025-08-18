@@ -1,6 +1,6 @@
 'use client'
 
-import { setLivestreamsMockData } from '@/actions/livestreams'
+import { setLivestreamsMockData } from '@/actions/mockData'
 import { useEffect, useState } from 'react'
 
 export default function Account() {
@@ -12,11 +12,7 @@ export default function Account() {
         setMessage('')
         try {
             const result = await setLivestreamsMockData()
-            if (result.length > 0) {
-                setMessage(`Successfully seeded ${result.length} livestreams.`)
-            } else {
-                setMessage('Seeding completed. Check server logs for details.')
-            }
+            setMessage(result.length ? `Successfully seeded ${result.length} livestreams.` : 'Seeding completed. Check server logs for details.')
         } catch (error) {
             setMessage(`An error occurred: ${error instanceof Error ? error.message : 'Unknown error'}`)
         } finally {

@@ -1,3 +1,8 @@
+import { getLivestreams } from '@/actions/livestreams'
+import { HomeFeed } from '@/components/home-feed/HomeFeed'
+
 export default async function Home() {
-    return <h1>Home</h1>
+    const livestreams = await getLivestreams()
+
+    return <HomeFeed livestreams={livestreams} />
 }

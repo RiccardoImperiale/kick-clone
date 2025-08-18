@@ -1,0 +1,49 @@
+$text-color: var(--color-white);
+$text-color-gray: var(--color-text-300);
+
+.cardLayout {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.imageBox {
+    background-color: rgb(32, 218, 165);
+    aspect-ratio: 16 / 9;
+    width: 100%;
+}
+
+.footer {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem 0.375rem;
+
+    .avatar {
+        border-radius: 50%;
+        aspect-ratio: 1 / 1;
+        width: 32px;
+        height: 32px;
+        background-color: rgb(138, 138, 138);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.infoBox {
+    .title {
+        font-size: 0.875rem;
+        font-weight: 600;
+    }
+
+    .category {
+        font-weight: 600;
+        font-size: 0.75rem;
+        color: $text-color-gray;
+
+        &:hover {
+            color: $text-color;
+            cursor: pointer;
+        }
+    }
+}

@@ -1,0 +1,33 @@
+$color-default: #42474d;
+
+.pill {
+    padding: 2px 8px;
+    height: fit-content;
+    border-radius: 6px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-wrap: nowrap;
+
+    .text {
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+
+    &.default {
+        background-color: $color-default;
+    }
+
+    &.rounded {
+        border-radius: 20px;
+    }
+
+    .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 10px;
+        height: 10px;
+    }
+}

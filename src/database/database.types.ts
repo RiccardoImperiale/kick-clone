@@ -14,9 +14,34 @@ export type Database = {
   }
   public: {
     Tables: {
+      categories: {
+        Row: {
+          created_at: string
+          id: string
+          image_url: string
+          name: string
+          tags: string[] | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          image_url: string
+          name: string
+          tags?: string[] | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          image_url?: string
+          name?: string
+          tags?: string[] | null
+        }
+        Relationships: []
+      }
       livestreams: {
         Row: {
           categories: string[]
+          category_id: string
           created_at: string
           id: string
           is_live: boolean
@@ -26,6 +51,7 @@ export type Database = {
         }
         Insert: {
           categories: string[]
+          category_id: string
           created_at?: string
           id?: string
           is_live: boolean
@@ -35,6 +61,7 @@ export type Database = {
         }
         Update: {
           categories?: string[]
+          category_id?: string
           created_at?: string
           id?: string
           is_live?: boolean
@@ -42,7 +69,15 @@ export type Database = {
           profile_image_url?: string | null
           username?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "livestreams_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       profiles: {
         Row: {

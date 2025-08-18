@@ -1,23 +1,18 @@
 import Image from 'next/image'
 import { Tables } from '@/database/database.types'
-import styles from './SidebarChannel.module.scss'
+import styles from './RecommendedCard.module.scss'
 
-interface SidebarChannelProps {
+interface RecommendedCardProps {
     isOpen: boolean
     livestream: Tables<'livestreams'>
 }
 
-export const SidebarChannel = ({ isOpen, livestream }: SidebarChannelProps) => {
+export const RecommendedCard = ({ isOpen, livestream }: RecommendedCardProps) => {
     return (
         <div className={`${styles.channel} ${!isOpen && styles.channelComp}`}>
             <div className={styles.avatar}>
                 {!isOpen && <div className={`${styles.ring} ${livestream.is_live && styles.active}`} />}
-                <Image
-                    src={livestream.profile_image_url || ''}
-                    alt={`${livestream.name}'s profile image`}
-                    width={40} // example width
-                    height={40} // example height
-                />
+                <Image src={livestream.profile_image_url || ''} alt={`${livestream.name}'s profile image`} width={40} height={40} />
             </div>
             {isOpen && (
                 <>
