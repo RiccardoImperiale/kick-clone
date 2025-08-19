@@ -1,17 +1,19 @@
 import { Tables } from '@/database/database.types'
 import styles from './HomeFeed.module.scss'
 import { CategoriesSection } from '@/components/section/categories-section/CategoriesSection'
-import { StreamersSection } from '../section/streamers-section/StreamersSection'
+import { StreamingSection } from '../section/streaming-section/StreamingSection'
 
 interface HomeFeedProps {
-    livestreams?: Tables<'livestreams'>[]
+    categories?: Tables<'categories'>[]
 }
 
 export const HomeFeed = (props: HomeFeedProps) => {
     return (
         <div className={styles.pageLayout}>
             <CategoriesSection />
-            <StreamersSection />
+            {props.categories?.map(category => (
+                <StreamingSection key={category.id} sectionTitle={category.name} />
+            ))}
 
             {/* <section>
                 <h2>Live</h2>

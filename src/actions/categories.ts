@@ -5,10 +5,16 @@ import { createClient } from '@/utils/supabase/server'
 
 type Category = Tables<'categories'>
 
-export async function getCategories(): Promise<Category[]> {
+export async function getCategories(filters?: { limit?: number }): Promise<Category[]> {
     const supabase = await createClient()
 
-    const { data, error } = await supabase.from('categories').select('*')
+    let query = supabase.from('categories').select('*')
+
+    if (filters?.limit !== undefined) {
+        query = query.limit(filters.limit)
+    }
+
+    const { data, error } = await query
 
     if (error) {
         console.error('Error fetching categories:', error)

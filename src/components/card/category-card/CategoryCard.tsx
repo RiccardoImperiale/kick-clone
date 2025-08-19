@@ -23,7 +23,7 @@ export const CategoryCard = (props: CategoryCardProps) => {
                 <div className={styles.name}>name</div> */}
                 <div className={styles.tags}>
                     {props.tags?.map((tag, index) => (
-                        <Pill key={index} text={tag} />
+                        <Pill key={index} text={tag} rounded />
                     ))}
                 </div>
             </div>

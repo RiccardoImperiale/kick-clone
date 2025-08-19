@@ -31,13 +31,17 @@ export async function getRecommended(): Promise<Livestream[]> {
     return data
 }
 
-export async function getLivestreams(categoryId?: string): Promise<Livestream[]> {
+export async function getLivestreams(filters?: { categoryId?: string; limit?: number }): Promise<Livestream[]> {
     const supabase = await createClient()
 
     let query = supabase.from('livestreams').select('*')
 
-    if (categoryId !== undefined) {
-        query = query.eq('category_id', categoryId)
+    if (filters?.categoryId !== undefined) {
+        query = query.eq('category_id', filters.categoryId)
+    }
+
+    if (filters?.limit !== undefined) {
+        query = query.limit(filters.limit)
     }
 
     const { data, error } = await query

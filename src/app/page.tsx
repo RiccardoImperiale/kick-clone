@@ -1,8 +1,8 @@
-import { getLivestreams } from '@/actions/livestreams'
+import { getCategories } from '@/actions/categories'
 import { HomeFeed } from '@/components/home-feed/HomeFeed'
 
 export default async function Home() {
-    const livestreams = await getLivestreams()
+    const categories = await getCategories({ limit: 5 })
 
-    return <HomeFeed livestreams={livestreams} />
+    return <HomeFeed categories={categories} />
 }

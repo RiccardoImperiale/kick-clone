@@ -48,6 +48,7 @@ $text-color-gray: var(--color-text-300);
     aspect-ratio: 3 / 4;
     width: 100%;
     overflow: hidden;
+    border-radius: 0.25rem;
 
     &::after {
         content: '';

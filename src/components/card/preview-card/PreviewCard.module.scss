@@ -11,6 +11,8 @@ $text-color-gray: var(--color-text-300);
     background-color: rgb(32, 218, 165);
     aspect-ratio: 16 / 9;
     width: 100%;
+    border-radius: 0.25rem;
+    overflow: hidden;
 }
 
 .footer {

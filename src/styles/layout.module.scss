@@ -1,12 +1,13 @@
 .layout {
-    padding-top: 60px;
     display: flex;
+    padding-top: 3.75rem;
 }
 
 .content {
     overflow-y: auto;
     height: 100vh;
     width: 100%;
+    padding-bottom: 3.75rem;
 }
 
 @media (max-width: 1280px) {
