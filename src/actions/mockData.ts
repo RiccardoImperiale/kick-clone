@@ -1,11 +1,14 @@
 'use server'
 
 import { Tables } from '@/database/database.types'
-import { categories, livestreams } from '@/database/mockData'
+import { categories } from '@/database/mock-data/categories'
+import { livestreams } from '@/database/mock-data/levestreams'
+import { streamers } from '@/database/mock-data/streamers'
 import { createClient } from '@/utils/supabase/server'
 
 type Category = Tables<'categories'>
 type Livestream = Tables<'livestreams'>
+type Streamer = Tables<'streamers'>
 
 export async function setCategoriesMockData(): Promise<Category[]> {
     const supabase = await createClient()
@@ -21,13 +24,28 @@ export async function setCategoriesMockData(): Promise<Category[]> {
     return data || []
 }
 
-export async function setLivestreamsMockData(): Promise<Livestream[]> {
+export async function setStreamersMockData(): Promise<Streamer[]> {
     const supabase = await createClient()
 
     await setCategoriesMockData()
 
-    await supabase.from('livestreams').delete().neq('id', '')
+    await supabase.from('streamers').delete().neq('id', '')
+    const { data, error } = await supabase.from('streamers').insert(streamers).select()
 
+    if (error) {
+        console.error('Error setting streamers mock data:', error)
+        return []
+    }
+
+    return data || []
+}
+
+export async function setLivestreamsMockData(): Promise<Livestream[]> {
+    const supabase = await createClient()
+
+    await setStreamersMockData()
+
+    await supabase.from('livestreams').delete().neq('id', '')
     const { data, error } = await supabase.from('livestreams').insert(livestreams).select()
 
     if (error) {

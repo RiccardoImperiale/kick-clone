@@ -15,7 +15,7 @@ export const CategoryCard = (props: CategoryCardProps) => {
         <div className={styles.cardLayout}>
             <div className={styles.number}>{props.number}</div>
             <div className={styles.imageBox}>
-                <Image src={props.image} alt="category image" fill />
+                <Image src={props.image} alt="category image" fill sizes="100" priority />
             </div>
             <div className={styles.footer}>
                 <div className={styles.title}>{props.title}</div>

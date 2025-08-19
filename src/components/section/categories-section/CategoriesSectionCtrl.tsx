@@ -1,6 +1,6 @@
 'use client'
 
-import { use, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './CategoriesSection.module.scss'
 import { CategoryCard } from '@/components/card/category-card/CategoryCard'
 import Link from 'next/link'
@@ -8,13 +8,12 @@ import { AppRoutes } from '@/settings/AppRoutes'
 import { Tables } from '@/database/database.types'
 import { useLoadingStore } from '@/state/loadingStore'
 import { Loader } from '@/components/loader/Loader'
-import { is } from 'zod/locales'
 
-interface CategoriesSectionClientProps {
+interface CategoriesSectionCtrlProps {
     topCategories: Tables<'categories'>[]
 }
 
-export const CategoriesSectionClient = ({ topCategories }: CategoriesSectionClientProps) => {
+export const CategoriesSectionCtrl = ({ topCategories }: CategoriesSectionCtrlProps) => {
     const [visibleCategories, setVisibleCategories] = useState(topCategories)
     const isLoading = useLoadingStore(state => state.isLoading)
     const [columns, setColumns] = useState(7)

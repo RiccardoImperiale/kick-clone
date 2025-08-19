@@ -58,10 +58,10 @@ export async function signIn(formData: FormData) {
         return { success: false, message: error?.message }
     }
 
-    const { data: existingUser } = await supabase.from('profiles').select('*').eq('email', payload?.email).single()
+    const { data: existingUser } = await supabase.from('user_profiles').select('*').eq('email', payload?.email).single()
 
     if (!existingUser) {
-        const { error: insertError } = await supabase.from('profiles').insert({
+        const { error: insertError } = await supabase.from('user_profiles').insert({
             email: data?.user.email,
             username: data?.user.user_metadata.username,
         })
@@ -92,7 +92,7 @@ export async function forgotPassword(formData: FormData) {
 
     const origin = (await headers()).get('origin')
 
-    const { data: profile, error: profileError } = await supabase.from('profiles').select('id').eq('email', email).single()
+    const { data: profile, error: profileError } = await supabase.from('user_profiles').select('id').eq('email', email).single()
 
     if (!profile || profileError) {
         return { success: false, message: "We can't find a user with that email address." }

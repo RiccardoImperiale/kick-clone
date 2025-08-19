@@ -1,0 +1,33 @@
+$border-section-color: var(--color-border-secondary-500);
+$link-color: var(--color-text-300);
+
+.sectionLayout {
+    border-bottom: 2px solid $border-section-color;
+    padding-bottom: 2rem;
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 600;
+
+    h2 {
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+    }
+
+    span {
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        color: $link-color;
+    }
+}
+
+.streamPreviews {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+}

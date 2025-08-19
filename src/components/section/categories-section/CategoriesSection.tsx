@@ -2,9 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import { getTopCategories } from '@/actions/categories'
-import { CategoriesSectionClient } from './CategoriesSectionClient'
+import { CategoriesSectionCtrl } from './CategoriesSectionCtrl'
 import { useLoadingStore } from '@/state/loadingStore'
-import { Category } from '@/lib/types/category'
 import { Tables } from '@/database/database.types'
 
 export const CategoriesSection = () => {
@@ -26,5 +25,5 @@ export const CategoriesSection = () => {
         fetchCategories()
     }, [setIsLoading])
 
-    return <CategoriesSectionClient topCategories={topCategories} />
+    return <CategoriesSectionCtrl topCategories={topCategories} />
 }

@@ -1,0 +1,98 @@
+import type { Tables } from '../database.types'
+import { categoriesUUIDs } from './categories'
+
+export const streamerUUIDs = [
+    '11111111-2222-3333-4444-555555555555',
+    '22222222-3333-4444-5555-666666666666',
+    '33333333-4444-5555-6666-777777777777',
+    '44444444-5555-6666-7777-888888888888',
+    '55555555-6666-7777-8888-999999999999',
+    '66666666-7777-8888-9999-aaaaaaaaaaaa',
+    '77777777-8888-9999-aaaa-bbbbbbbbbbbb',
+    '88888888-9999-aaaa-bbbb-cccccccccccc',
+    '99999999-aaaa-bbbb-cccc-dddddddddddd',
+    'aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee',
+]
+
+export const streamers: Tables<'streamers'>[] = [
+    {
+        id: streamerUUIDs[0],
+        created_at: '2024-07-20T11:00:00Z',
+        username: 'BeastMaster64',
+        profile_image_url: 'https://randomuser.me/api/portraits/men/1.jpg',
+        category_id: categoriesUUIDs[1],
+        tags: ['Shooter', 'Battle Royale'],
+    },
+    {
+        id: streamerUUIDs[1],
+        created_at: '2024-07-20T11:01:00Z',
+        username: 'AcousticAmy',
+        profile_image_url: 'https://randomuser.me/api/portraits/women/2.jpg',
+        category_id: categoriesUUIDs[0],
+        tags: ['Music', 'Live'],
+    },
+    {
+        id: streamerUUIDs[2],
+        created_at: '2024-07-20T11:02:00Z',
+        username: 'SportyMike',
+        profile_image_url: 'https://randomuser.me/api/portraits/men/3.jpg',
+        category_id: categoriesUUIDs[2],
+        tags: ['Football', 'Sports'],
+    },
+    {
+        id: streamerUUIDs[3],
+        created_at: '2024-07-20T11:03:00Z',
+        username: 'LifewithJen',
+        profile_image_url: 'https://randomuser.me/api/portraits/women/4.jpg',
+        category_id: categoriesUUIDs[3],
+        tags: ['Lifestyle', 'IRL'],
+    },
+    {
+        id: streamerUUIDs[4],
+        created_at: '2024-07-20T11:04:00Z',
+        username: 'ChatKing',
+        profile_image_url: 'https://randomuser.me/api/portraits/men/5.jpg',
+        category_id: categoriesUUIDs[0],
+        tags: ['Chat', 'Talk'],
+    },
+    {
+        id: streamerUUIDs[5],
+        created_at: '2024-07-20T11:05:00Z',
+        username: 'CodeWithAnna',
+        profile_image_url: 'https://randomuser.me/api/portraits/women/6.jpg',
+        category_id: categoriesUUIDs[5],
+        tags: ['Coding', 'Education'],
+    },
+    {
+        id: streamerUUIDs[6],
+        created_at: '2024-07-20T11:06:00Z',
+        username: 'NewsGuy',
+        profile_image_url: 'https://randomuser.me/api/portraits/men/7.jpg',
+        category_id: categoriesUUIDs[6],
+        tags: ['News', 'Politics'],
+    },
+    {
+        id: streamerUUIDs[7],
+        created_at: '2024-07-20T11:07:00Z',
+        username: 'TechieTina',
+        profile_image_url: 'https://randomuser.me/api/portraits/women/8.jpg',
+        category_id: categoriesUUIDs[7],
+        tags: ['AI', 'Tech'],
+    },
+    {
+        id: streamerUUIDs[8],
+        created_at: '2024-07-20T11:08:00Z',
+        username: 'ChefMario',
+        profile_image_url: 'https://randomuser.me/api/portraits/men/9.jpg',
+        category_id: categoriesUUIDs[8],
+        tags: ['Cooking', 'Food'],
+    },
+    {
+        id: streamerUUIDs[9],
+        created_at: '2024-07-20T11:09:00Z',
+        username: 'FitLara',
+        profile_image_url: 'https://randomuser.me/api/portraits/women/10.jpg',
+        category_id: categoriesUUIDs[9],
+        tags: ['Fitness', 'Health'],
+    },
+]

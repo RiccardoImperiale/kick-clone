@@ -40,34 +40,31 @@ export type Database = {
       }
       livestreams: {
         Row: {
-          categories: string[]
-          category_id: string
+          category_id: string | null
           created_at: string
           id: string
-          is_live: boolean
-          name: string | null
-          profile_image_url: string | null
-          username: string
+          image_url: string | null
+          streamer_id: string
+          tags: string[] | null
+          title: string
         }
         Insert: {
-          categories: string[]
-          category_id: string
+          category_id?: string | null
           created_at?: string
           id?: string
-          is_live: boolean
-          name?: string | null
-          profile_image_url?: string | null
-          username: string
+          image_url?: string | null
+          streamer_id: string
+          tags?: string[] | null
+          title: string
         }
         Update: {
-          categories?: string[]
-          category_id?: string
+          category_id?: string | null
           created_at?: string
           id?: string
-          is_live?: boolean
-          name?: string | null
-          profile_image_url?: string | null
-          username?: string
+          image_url?: string | null
+          streamer_id?: string
+          tags?: string[] | null
+          title?: string
         }
         Relationships: [
           {
@@ -77,9 +74,51 @@ export type Database = {
             referencedRelation: "categories"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "livestreams_streamer_id_fkey"
+            columns: ["streamer_id"]
+            isOneToOne: false
+            referencedRelation: "streamers"
+            referencedColumns: ["id"]
+          },
         ]
       }
-      profiles: {
+      streamers: {
+        Row: {
+          category_id: string
+          created_at: string
+          id: string
+          profile_image_url: string | null
+          tags: string[]
+          username: string
+        }
+        Insert: {
+          category_id: string
+          created_at?: string
+          id?: string
+          profile_image_url?: string | null
+          tags: string[]
+          username: string
+        }
+        Update: {
+          category_id?: string
+          created_at?: string
+          id?: string
+          profile_image_url?: string | null
+          tags?: string[]
+          username?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "streamers_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_profiles: {
         Row: {
           created_at: string | null
           email: string

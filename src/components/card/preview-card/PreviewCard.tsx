@@ -1,6 +1,12 @@
 import styles from './PreviewCard.module.scss'
 
-export const PreviewCard = () => {
+interface PreviewCardProps {
+    // title: string
+    // image: string | null
+    // tags: string[]
+}
+
+export const PreviewCard = (props: PreviewCardProps) => {
     return (
         <div className={styles.cardLayout}>
             <div className={styles.imageBox}></div>
