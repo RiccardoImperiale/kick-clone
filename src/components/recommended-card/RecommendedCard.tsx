@@ -13,6 +13,7 @@ export const RecommendedCard = ({ isOpen, livestream }: RecommendedCardProps) =>
             <div className={styles.avatar}>
                 {!isOpen && <div className={styles.ring} />}
                 {/* {!isOpen && <div className={`${styles.ring} ${livestream.is_live && styles.active}`} />} */}
+                {!isOpen && <div className={styles.ring} />}
                 <Image src={livestream.image_url || ''} alt={`${livestream.title}'s profile image`} width={40} height={40} />
             </div>
             {isOpen && (
@@ -22,6 +23,7 @@ export const RecommendedCard = ({ isOpen, livestream }: RecommendedCardProps) =>
                         <div className={styles.info}>{livestream.tags?.map(category => category).join(', ')}</div>{' '}
                     </div>
                     {/* <div className={`${styles.liveActivity} ${livestream.is_live && styles.active}`} /> */}
+                    <div className={`${styles.liveActivity}`} />
                 </>
             )}
         </div>

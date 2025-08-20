@@ -24,6 +24,19 @@ export async function getCategories(filters?: { limit?: number }): Promise<Categ
     return data
 }
 
+export async function getCategory(id: string): Promise<Category | null> {
+    const supabase = await createClient()
+
+    const { data, error } = await supabase.from('categories').select('*').eq('id', id).single()
+
+    if (error) {
+        console.error('Error fetching category:', error)
+        return null
+    }
+
+    return data
+}
+
 export async function getTopCategories(): Promise<Category[]> {
     const supabase = await createClient()
 
