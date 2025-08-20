@@ -9,7 +9,7 @@ export default async function Home() {
 
     const data = await Promise.all(
         categories.map(async category => {
-            const livestreams = await getLivestreams({ categoryId: category.id, limit: 4 })
+            const livestreams = await getLivestreams({ categoryId: category.id, limit: 8 })
 
             const streamsWithDetails = await Promise.all(
                 livestreams.map(async stream => ({

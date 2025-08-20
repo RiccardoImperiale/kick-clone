@@ -1,9 +1,10 @@
 $border-section-color: var(--color-border-secondary-500);
 $link-color: var(--color-text-300);
+$show-more-text-color: var(--color-text-100);
 
 .sectionLayout {
-    border-bottom: 2px solid $border-section-color;
-    padding-bottom: 1.5rem;
+    padding-bottom: 2rem;
+    position: relative;
 }
 
 .sectionHeader {
@@ -30,4 +31,33 @@ $link-color: var(--color-text-300);
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
+}
+
+.lineBox {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+
+    .line {
+        border: none;
+        border-bottom: 2px solid $border-section-color;
+        flex-grow: 1;
+    }
+
+    span {
+        font-size: 0.75rem;
+        line-height: 1rem;
+        font-weight: 600;
+        color: $show-more-text-color;
+        transition: 0.2s ease;
+        padding-inline: 0.75rem;
+
+        &:hover {
+            cursor: pointer;
+            color: white;
+        }
+    }
 }

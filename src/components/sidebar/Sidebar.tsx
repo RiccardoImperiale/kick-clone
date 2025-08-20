@@ -13,7 +13,7 @@ import { RecommendedCard } from '@/components/recommended-card/RecommendedCard'
 import { useEffect, useRef } from 'react'
 
 interface SidebarProps {
-    livestreams?: Tables<'livestreams'>[]
+    recommended?: Tables<'streamers'>[]
 }
 
 const resizeAt = 1280
@@ -78,8 +78,8 @@ export const Sidebar = (props: SidebarProps) => {
                     </div>
                 )}
                 <div className={styles.channelsList}>
-                    {props.livestreams?.map(livestream => (
-                        <RecommendedCard key={livestream.id} isOpen={isOpen} livestream={livestream} />
+                    {props.recommended?.map(streamer => (
+                        <RecommendedCard key={streamer.id} isOpen={isOpen} streamer={streamer} />
                     ))}
                 </div>
             </aside>

@@ -17,3 +17,16 @@ export async function getStreamer(id: string): Promise<Streamer | null> {
 
     return data
 }
+
+export async function getRecommended(): Promise<Streamer[]> {
+    const supabase = await createClient()
+
+    const { data, error } = await supabase.from('streamers').select('*').limit(10)
+
+    if (error) {
+        console.error('Error fetching livestreams:', error)
+        return []
+    }
+
+    return data
+}

@@ -18,7 +18,7 @@ export const HomeFeed = (props: HomeFeedProps) => {
         <div className={styles.pageLayout}>
             <CategoriesSection />
             {props.data.map(({ category, livestreams }) => (
-                <StreamingSection key={category.id} sectionTitle={category.name} livestreams={livestreams} />
+                <StreamingSection key={category.id} sectionTitle={category.name} livestreams={livestreams} categoryId={category.id} />
             ))}
         </div>
     )
