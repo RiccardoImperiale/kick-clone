@@ -1,0 +1,40 @@
+$active-color: var(--color-bg-500);
+$border-hover-color: var(--color-border-secondary-400);
+$line-color: var(--color-border-secondary-600);
+
+.pageNavBar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    border-bottom: 0.125rem solid $line-color;
+}
+
+.tab {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-bottom: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: capitalize;
+    color: white;
+    border-bottom: 0.125rem solid transparent;
+    transform: translateY(0.125rem);
+    transition: 0.2s ease;
+
+    &:hover {
+        border-bottom: 0.125rem solid $border-hover-color;
+    }
+}
+
+.activeLine {
+    position: absolute;
+    bottom: -0.125rem;
+    height: 0.125rem;
+    border-radius: 0.125rem;
+    background-color: $active-color;
+    transition: left 0.3s ease, width 0.3s ease;
+}

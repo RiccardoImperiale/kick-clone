@@ -41,5 +41,17 @@ $input-border-focus-color: var(--color-white);
             outline: none;
             border-color: $input-border-hover-color;
         }
+
+        &:disabled {
+            cursor: not-allowed;
+        }
     }
 }
+
+// .disabled {
+//     user-select: none;
+//     pointer-events: none;
+//     background-color: transparent;
+//     color: $input-placeholder-color;
+//     border-color: $input-border-color;
+// }

@@ -7,6 +7,7 @@ import { signIn } from '@/actions/auth'
 import { LoginError, validateLogin } from '@/utils/validator'
 import { ErrorMessage } from '@/components/error-message/ErrorMessage'
 import { useRouter } from 'next/navigation'
+import { AppRoutes } from '@/settings/AppRoutes'
 
 interface ILoginFormProps {
     onLoadingChange: (isLoading: boolean) => void
@@ -35,7 +36,7 @@ export const LoginForm = (props: ILoginFormProps) => {
         props.onLoadingChange(true)
         const res = await signIn(formData)
         if (res.success) {
-            router.push('/account')
+            router.push(AppRoutes.home)
             props.onClose()
         } else {
             setRespMsg(res.message)

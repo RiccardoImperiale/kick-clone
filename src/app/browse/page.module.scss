@@ -1,0 +1,24 @@
+@use '@/styles/globals.module.scss' as *;
+
+.pageLayout {
+    @extend .pageLayout_global;
+}
+
+.livestreamsList,
+.categoriesList {
+    display: grid;
+    gap: 1.5rem;
+
+    // > * {
+    //     max-width: 400px;
+    //     width: 100%;
+    // }
+}
+
+.livestreamsList {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.categoriesList {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}

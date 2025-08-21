@@ -70,7 +70,7 @@ export const Navbar = (props: HeaderProps) => {
                     <Image onClick={() => router.push(AppRoutes.home)} src="/kick-logo.svg" alt="Logo" width={97} height={26} priority />
                 </div>
                 <div className={styles.middle}>
-                    <Search placeholder="Search" />
+                    <Search placeholder="Search" disabled />
                 </div>
                 <div className={styles.right}>
                     {props.user ? (

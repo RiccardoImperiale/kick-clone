@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import styles from '@/styles/layout.module.scss'
 import { Geist, Geist_Mono } from 'next/font/google'
-import '@/styles/globals.scss'
+import '@/styles/app.scss'
 import { Header } from '@/components/header/Header'
 import { SidebarCtrl } from '@/components/sidebar/SidebarCtrl'
 

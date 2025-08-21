@@ -4,7 +4,7 @@ import styles from './CategoryCard.module.scss'
 import { Pill } from '@/components/pill/Pill'
 
 interface CategoryCardProps {
-    number: number
+    number?: number
     title: string
     image: string
     tags: string[] | null
@@ -13,7 +13,7 @@ interface CategoryCardProps {
 export const CategoryCard = (props: CategoryCardProps) => {
     return (
         <div className={styles.cardLayout}>
-            <div className={styles.number}>{props.number}</div>
+            {props.number && <div className={styles.number}>{props.number}</div>}
             <div className={styles.imageBox}>
                 <Image src={props.image} alt="category image" fill sizes="100" priority />
             </div>

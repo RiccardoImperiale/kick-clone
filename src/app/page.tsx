@@ -1,8 +1,10 @@
+import styles from './page.module.scss'
 import { getCategories } from '@/actions/categories'
 import { getLivestreams } from '@/actions/livestreams'
 import { getCategory } from '@/actions/categories'
 import { getStreamer } from '@/actions/streamers'
-import { HomeFeed } from '@/components/home-feed/HomeFeed'
+import { CategoriesSection } from '@/components/section/categories-section/CategoriesSection'
+import { StreamingSection } from '@/components/section/streaming-section/StreamingSection'
 
 export default async function Home() {
     const categories = await getCategories({ limit: 5 })
@@ -23,5 +25,12 @@ export default async function Home() {
         })
     )
 
-    return <HomeFeed data={data} />
+    return (
+        <div className={styles.pageLayout}>
+            <CategoriesSection />
+            {data.map(({ category, livestreams }) => (
+                <StreamingSection key={category.id} sectionTitle={category.name} livestreams={livestreams} />
+            ))}
+        </div>
+    )
 }
