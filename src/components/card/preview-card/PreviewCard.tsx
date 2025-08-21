@@ -5,6 +5,8 @@ import { Pill } from '@/components/pill/Pill'
 import styles from './PreviewCard.module.scss'
 import { Tables } from '@/database/database.types'
 import { CardCorner } from '@/assets/CardCorner'
+import { useState } from 'react'
+import { ErrorImg } from '@/assets/ErrorImg'
 
 export interface PreviewCardProps {
     image: string | null
@@ -15,16 +17,30 @@ export interface PreviewCardProps {
 }
 
 export const PreviewCard = (props: PreviewCardProps) => {
+    const [imageError, setImageError] = useState(false)
+
     return (
         <div className={styles.cardLayout}>
             <div className={styles.liveBadge}>LIVE</div>
             <div className={styles.imageBox}>
-                <Image src={props.image || ''} alt="streaming preview image" fill sizes="100" priority />
+                {props.image && !imageError ? (
+                    <Image src={props.image} alt="streaming preview image" fill sizes="100" priority onError={() => setImageError(true)} />
+                ) : (
+                    <div className={styles.defaultImage}>
+                        <ErrorImg width={40} height={40} />
+                    </div>
+                )}
             </div>
             <div className={styles.footer}>
                 <div className={styles.avatar}>
                     {props.streamer?.profile_image_url && (
-                        <Image src={props.streamer.profile_image_url} alt={props.streamer.username || 'streamer'} fill sizes="100" />
+                        <Image
+                            src={props.streamer.profile_image_url}
+                            alt={props.streamer.username || 'streamer'}
+                            fill
+                            sizes="100"
+                            onError={e => ((e.target as HTMLImageElement).style.display = 'none')}
+                        />
                     )}
                 </div>
                 <div className={styles.infoBox}>

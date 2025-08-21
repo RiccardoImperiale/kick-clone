@@ -12,6 +12,7 @@ import { useLoadingStore } from '@/state/loadingStore'
 import { signOut } from '@/actions/auth'
 import { useRouter } from 'next/navigation'
 import { AppRoutes } from '@/settings/AppRoutes'
+import Image from 'next/image'
 
 interface UserDropdownProps {
     user: User | null
@@ -38,11 +39,11 @@ export const UserDropdown = (props: UserDropdownProps) => {
     return (
         <div className={styles.userBox}>
             <div className={styles.avatar} onClick={() => setIsOpen(!isOpen)}>
-                <UserIcon />
+                <Image src="/avatar.jpeg" alt="User avatar" width={40} height={40} />
             </div>
             <div className={`${styles.dropdown} ${isOpen && styles.open}`}>
                 <div className={styles.header}>
-                    <UserIcon width={16} height={16} />
+                    <Image src="/avatar.jpeg" alt="User avatar" width={32} height={32} />
                     {props.user?.user_metadata.username}
                 </div>
                 <div className={styles.list}>

@@ -9,6 +9,7 @@ $border-color: var(--color-bg-secondary);
     width: 2rem;
     height: 2rem;
     border-radius: 2rem;
+    overflow: hidden;
     aspect-ratio: 1;
     cursor: pointer;
     transition: 0.2s ease;
@@ -50,7 +51,7 @@ $border-color: var(--color-bg-secondary);
     font-weight: 600;
     padding-bottom: 0.75rem;
 
-    svg {
+    img {
         background-color: black;
         width: 2rem;
         height: 2rem;
