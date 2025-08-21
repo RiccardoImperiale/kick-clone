@@ -37,8 +37,9 @@ export const PreviewCard = (props: PreviewCardProps) => {
                         <Image
                             src={props.streamer.profile_image_url}
                             alt={props.streamer.username || 'streamer'}
-                            fill
-                            sizes="100"
+                            width={40}
+                            height={40}
+                            unoptimized
                             onError={e => ((e.target as HTMLImageElement).style.display = 'none')}
                         />
                     )}

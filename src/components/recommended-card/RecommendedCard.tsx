@@ -14,7 +14,13 @@ export const RecommendedCard = (props: RecommendedCardProps) => {
                 {!props.isOpen && <div className={styles.ring} />}
                 {/* {!isOpen && <div className={`${styles.ring} ${livestream.is_live && styles.active}`} />} */}
                 {!props.isOpen && <div className={styles.ring} />}
-                <Image src={props.streamer.profile_image_url || ''} alt={`${props.streamer.username}'s profile image`} width={40} height={40} />
+                <Image
+                    src={props.streamer.profile_image_url || ''}
+                    alt={`${props.streamer.username}'s profile image`}
+                    width={40}
+                    height={40}
+                    unoptimized
+                />
             </div>
             {props.isOpen && (
                 <>
