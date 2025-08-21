@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
-import { UserIcon } from '@/assets/icons/UserIcon'
 import styles from './UserDropdown.module.scss'
+import Image from 'next/image'
+import { useState } from 'react'
 import { User } from '@supabase/supabase-js'
 import { LogoutIcon } from '@/assets/icons/LogoutIcon'
 import { ChannelIcon } from '@/assets/icons/ChannelIcon'
@@ -12,7 +12,6 @@ import { useLoadingStore } from '@/state/loadingStore'
 import { signOut } from '@/actions/auth'
 import { useRouter } from 'next/navigation'
 import { AppRoutes } from '@/settings/AppRoutes'
-import Image from 'next/image'
 
 interface UserDropdownProps {
     user: User | null

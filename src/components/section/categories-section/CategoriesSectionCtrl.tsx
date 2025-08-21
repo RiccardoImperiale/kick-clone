@@ -20,7 +20,10 @@ export const CategoriesSectionCtrl = ({ topCategories }: CategoriesSectionCtrlPr
 
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth < 800) {
+            if (window.innerWidth < 700) {
+                setVisibleCategories(topCategories.slice(0, 2))
+                setColumns(2)
+            } else if (window.innerWidth < 800) {
                 setVisibleCategories(topCategories.slice(0, 3))
                 setColumns(3)
             } else if (window.innerWidth < 1100) {

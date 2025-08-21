@@ -9,7 +9,7 @@ export default function NotFound() {
             <NotFoundImg />
             <div className={styles.text}>
                 <h1>Oops, something went wrong</h1>
-                <p>We can't find the page you're looking for.</p>
+                <p>We can&apos;t find the page you&apos;re looking for.</p>
             </div>
             <Button text="Go back" color="primary" onClick={() => window.history.back()} />
         </div>

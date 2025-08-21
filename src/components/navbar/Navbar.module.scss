@@ -1,10 +1,21 @@
 $box-bg-color: var(--color-bg-secondary);
 
 .left,
-.right {
+.right,
+.links {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+.links {
+    padding-right: 1rem;
+    margin-right: 1.5rem;
+    border-right: 1px solid $box-bg-color;
+}
+
+.rightComp {
+    display: none;
 }
 
 .left img {
@@ -28,5 +39,21 @@ $box-bg-color: var(--color-bg-secondary);
     &:hover {
         background-color: $box-bg-color;
         cursor: pointer;
+    }
+}
+
+@media (max-width: 768px) {
+    .middle,
+    .right {
+        display: none;
+    }
+
+    .rightComp {
+        display: flex;
+        align-items: center;
+
+        > svg:last-child {
+            cursor: pointer;
+        }
     }
 }

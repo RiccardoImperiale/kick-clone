@@ -61,3 +61,15 @@ $show-more-text-color: var(--color-text-100);
         }
     }
 }
+
+@media (max-width: 768px) {
+    .streamPreviews {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .streamPreviews {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

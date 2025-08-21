@@ -13,8 +13,7 @@ $icon-box-bg-color: var(--color-bg-secondary);
     z-index: 4;
     padding: 1rem;
     position: fixed;
-    height: 100%;
-    width: 100%;
+    inset: 0;
     transition: opacity 0.2s ease;
 
     &.show {
@@ -38,7 +37,8 @@ $icon-box-bg-color: var(--color-bg-secondary);
 
 .modal {
     background-color: $modal-bg-color;
-    width: 27.5rem;
+    max-width: 27.5rem;
+    width: 100%;
     max-height: fit-content;
     height: 100%;
     border-radius: 0.25rem;

@@ -4,7 +4,7 @@ import Image from 'next/image'
 import styles from './Navbar.module.scss'
 
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { BurgerIcon } from '@/assets/icons/BurgerIcon'
 import { Button } from '@/components/button/Button'
 import { Search } from '@/components/search/Search'
@@ -15,6 +15,11 @@ import { useLoadingStore } from '@/state/loadingStore'
 import { UserDropdown } from '@/components/user-dropdown/UserDropdown'
 import { AppRoutes } from '@/settings/AppRoutes'
 import { useSidebarStore } from '@/state/sidebarStore'
+import { UserIcon } from '@/assets/icons/UserIcon'
+import Link from 'next/link'
+import { HomeIcon } from '@/assets/icons/HomeIcon'
+import { BrowseIcon } from '@/assets/icons/BrowseIcon'
+import { FollowingIcon } from '@/assets/icons/FollowingIcon'
 
 interface HeaderProps {
     user: User | null
@@ -55,6 +60,9 @@ export const Navbar = (props: HeaderProps) => {
         window.history.replaceState({}, document.title, window.location.pathname)
     }, [router])
 
+    const pathname = usePathname()
+    const isActive = (path: string) => pathname === path
+
     return (
         <>
             {isModalOpen && <AuthModal onClose={() => setIsModalOpen(false)} initialTab={initialTab} isResetPwd={isResetPwd} token={token} />}
@@ -78,6 +86,32 @@ export const Navbar = (props: HeaderProps) => {
                             <Button text="Sign Up" color="primary" onClick={() => handleModalOpen('Sign Up')} />
                         </>
                     )}
+                </div>
+                <div className={styles.rightComp}>
+                    <>
+                        <div className={styles.links}>
+                            <Link href={AppRoutes.home} className={isActive(AppRoutes.home) ? styles.active : ''}>
+                                <div className={styles.iconBox}>
+                                    <HomeIcon width={16} height={16} />
+                                </div>
+                            </Link>
+                            <Link href={AppRoutes.browse} className={isActive(AppRoutes.browse) ? styles.active : ''}>
+                                <div className={styles.iconBox}>
+                                    <BrowseIcon width={16} height={16} />
+                                </div>
+                            </Link>
+                            <Link href={AppRoutes.following} className={isActive(AppRoutes.following) ? styles.active : ''}>
+                                <div className={styles.iconBox}>
+                                    <FollowingIcon width={16} height={16} />
+                                </div>
+                            </Link>
+                        </div>
+                        {props.user ? (
+                            <UserDropdown user={props.user} />
+                        ) : (
+                            <UserIcon width={16} height={16} onClick={() => handleModalOpen('Log In')} />
+                        )}
+                    </>
                 </div>
             </nav>
         </>
