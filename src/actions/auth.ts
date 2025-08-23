@@ -2,11 +2,11 @@
 
 import { revalidatePath } from 'next/cache'
 import { createClient } from '@/utils/supabase/server'
-import { ResetPwdSchema, SignUpSchema } from '@/utils/validator'
+import { ResetPwdSchema, SignUpError, SignUpSchema } from '@/utils/validator'
 import { headers } from 'next/headers'
 import { AppRoutes } from '@/settings/AppRoutes'
 
-export async function signUp(formData: FormData) {
+export async function signUp(formData: FormData): Promise<{ success: boolean; message: string; zErrors?: SignUpError }> {
     const supabase = await createClient()
 
     const payload = {
@@ -44,7 +44,7 @@ export async function signUp(formData: FormData) {
     return { success: true, message: '' }
 }
 
-export async function signIn(formData: FormData) {
+export async function signIn(formData: FormData): Promise<{ success: boolean; message: string }> {
     const supabase = await createClient()
 
     const payload = {
@@ -58,10 +58,10 @@ export async function signIn(formData: FormData) {
         return { success: false, message: error?.message }
     }
 
-    const { data: existingUser } = await supabase.from('user_profiles').select('*').eq('email', payload?.email).single()
+    const { data: existingUser } = await supabase.from('users').select('*').eq('email', payload?.email).single()
 
     if (!existingUser) {
-        const { error: insertError } = await supabase.from('user_profiles').insert({
+        const { error: insertError } = await supabase.from('users').insert({
             email: data?.user.email,
             username: data?.user.user_metadata.username,
         })
@@ -75,7 +75,7 @@ export async function signIn(formData: FormData) {
     return { success: true, message: '' }
 }
 
-export async function signOut() {
+export async function signOut(): Promise<{ success: boolean }> {
     const supabase = await createClient()
 
     const { error } = await supabase.auth.signOut()
@@ -86,13 +86,13 @@ export async function signOut() {
     return { success: true }
 }
 
-export async function forgotPassword(formData: FormData) {
+export async function forgotPassword(formData: FormData): Promise<{ success: boolean; message: string }> {
     const supabase = await createClient()
     const email = formData.get('email') as string
 
     const origin = (await headers()).get('origin')
 
-    const { data: profile, error: profileError } = await supabase.from('user_profiles').select('id').eq('email', email).single()
+    const { data: profile, error: profileError } = await supabase.from('users').select('id').eq('email', email).single()
 
     if (!profile || profileError) {
         return { success: false, message: "We can't find a user with that email address." }

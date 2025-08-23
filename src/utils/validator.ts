@@ -34,6 +34,10 @@ export interface ResetPwdError {
     confirmPassword?: string
 }
 
+export interface NewStreamerError {
+    username?: string
+}
+
 export const validateSignUp = (formData: FormData) => {
     const formErrors: SignUpError = {}
 
@@ -84,6 +88,14 @@ export const validateResetPwd = (formData: FormData) => {
     } else if (password !== confirmPassword) {
         formErrors.confirmPassword = 'Passwords do not match'
     }
+
+    return formErrors
+}
+
+export const validateNewStreamer = (formData: FormData) => {
+    const formErrors: NewStreamerError = {}
+
+    if (!formData.get('username')) formErrors.username = 'Username required'
 
     return formErrors
 }

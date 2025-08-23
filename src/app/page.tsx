@@ -5,11 +5,28 @@ import { getCategory } from '@/actions/categories'
 import { getStreamer } from '@/actions/streamers'
 import { CategoriesSection } from '@/components/section/categories-section/CategoriesSection'
 import { StreamingSection } from '@/components/section/streaming-section/StreamingSection'
+import { OnboardingSection } from '@/components/section/onboarding-section/OnboardingSection'
+import { createClient } from '@/utils/supabase/server'
+import { getUser } from '@/actions/users'
 
 export default async function Home() {
     const categories = await getCategories({ limit: 5 })
+    const supabase = await createClient()
+    let isUserStreamer = false
 
-    const data = await Promise.all(
+    const {
+        data: { user },
+    } = await supabase.auth.getUser()
+
+    if (user) {
+        const res = await getUser(user.id)
+        if (res?.streamer_id) {
+            console.log(res?.streamer_id)
+            isUserStreamer = res?.streamer_id?.length > 0
+        }
+    }
+
+    const streams = await Promise.all(
         categories.map(async category => {
             const livestreams = await getLivestreams({ categoryId: category.id, limit: 8 })
 
@@ -27,8 +44,9 @@ export default async function Home() {
 
     return (
         <div className={styles.pageLayout}>
+            {user && !isUserStreamer && <OnboardingSection userId={user.id} />}
             <CategoriesSection />
-            {data.map(({ category, livestreams }) => (
+            {streams.map(({ category, livestreams }) => (
                 <StreamingSection key={category.id} sectionTitle={category.name} livestreams={livestreams} />
             ))}
         </div>

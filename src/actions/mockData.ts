@@ -1,14 +1,10 @@
 'use server'
 
-import { Tables } from '@/database/database.types'
 import { categories } from '@/database/mock-data/categories'
 import { livestreams } from '@/database/mock-data/levestreams'
 import { streamers } from '@/database/mock-data/streamers'
+import { Category, Livestream, Streamer } from '@/lib/apiTypes'
 import { createClient } from '@/utils/supabase/server'
-
-type Category = Tables<'categories'>
-type Livestream = Tables<'livestreams'>
-type Streamer = Tables<'streamers'>
 
 export async function setCategoriesMockData(): Promise<Category[]> {
     const supabase = await createClient()

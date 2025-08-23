@@ -24,7 +24,7 @@ export const PreviewCard = (props: PreviewCardProps) => {
             <div className={styles.liveBadge}>LIVE</div>
             <div className={styles.imageBox}>
                 {props.image && !imageError ? (
-                    <Image src={props.image} alt="streaming preview image" fill sizes="100" priority onError={() => setImageError(true)} />
+                    <Image src={props.image || ''} alt="streaming preview image" fill sizes="100" priority onError={() => setImageError(true)} />
                 ) : (
                     <div className={styles.defaultImage}>
                         <ErrorImg width={40} height={40} />
@@ -33,16 +33,15 @@ export const PreviewCard = (props: PreviewCardProps) => {
             </div>
             <div className={styles.footer}>
                 <div className={styles.avatar}>
-                    {props.streamer?.profile_image_url && (
+                    {props.streamer?.profile_image_url ? (
                         <Image
                             src={props.streamer.profile_image_url}
                             alt={props.streamer.username || 'streamer'}
                             width={40}
                             height={40}
                             unoptimized
-                            onError={e => ((e.target as HTMLImageElement).style.display = 'none')}
                         />
-                    )}
+                    ) : null}
                 </div>
                 <div className={styles.infoBox}>
                     <div className={styles.title}>{props.title}</div>

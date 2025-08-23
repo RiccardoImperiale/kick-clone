@@ -1,9 +1,7 @@
 'use server'
 
-import { Tables } from '@/database/database.types'
+import { Category } from '@/lib/apiTypes'
 import { createClient } from '@/utils/supabase/server'
-
-type Category = Tables<'categories'>
 
 export async function getCategories(filters?: { limit?: number }): Promise<Category[]> {
     const supabase = await createClient()

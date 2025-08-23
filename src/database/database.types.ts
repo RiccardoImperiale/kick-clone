@@ -85,27 +85,27 @@ export type Database = {
       }
       streamers: {
         Row: {
-          category_id: string
+          category_id: string | null
           created_at: string
           id: string
           profile_image_url: string | null
-          tags: string[]
+          tags: string[] | null
           username: string
         }
         Insert: {
-          category_id: string
+          category_id?: string | null
           created_at?: string
           id?: string
           profile_image_url?: string | null
-          tags: string[]
+          tags?: string[] | null
           username: string
         }
         Update: {
-          category_id?: string
+          category_id?: string | null
           created_at?: string
           id?: string
           profile_image_url?: string | null
-          tags?: string[]
+          tags?: string[] | null
           username?: string
         }
         Relationships: [
@@ -118,12 +118,13 @@ export type Database = {
           },
         ]
       }
-      user_profiles: {
+      users: {
         Row: {
           created_at: string | null
           email: string
           id: string
           image_url: string | null
+          streamer_id: string | null
           username: string
         }
         Insert: {
@@ -131,6 +132,7 @@ export type Database = {
           email: string
           id?: string
           image_url?: string | null
+          streamer_id?: string | null
           username: string
         }
         Update: {
@@ -138,9 +140,18 @@ export type Database = {
           email?: string
           id?: string
           image_url?: string | null
+          streamer_id?: string | null
           username?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "users_streamer_id_fkey"
+            columns: ["streamer_id"]
+            isOneToOne: true
+            referencedRelation: "streamers"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {

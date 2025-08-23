@@ -12,6 +12,7 @@ import { useLoadingStore } from '@/state/loadingStore'
 import { signOut } from '@/actions/auth'
 import { useRouter } from 'next/navigation'
 import { AppRoutes } from '@/settings/AppRoutes'
+import Link from 'next/link'
 
 interface UserDropdownProps {
     user: User | null
@@ -46,10 +47,10 @@ export const UserDropdown = (props: UserDropdownProps) => {
                     {props.user?.user_metadata.username}
                 </div>
                 <div className={styles.list}>
-                    <div className={styles.tab}>
+                    <Link href={AppRoutes.channel} className={styles.tab}>
                         <ChannelIcon width={16} height={16} />
                         Channel
-                    </div>
+                    </Link>
                     <div className={styles.tab}>
                         <SubsIcon width={16} height={16} />
                         Subscriptions

@@ -15,8 +15,17 @@ export type Livestream = {
 }
 
 export type Streamer = {
+    id?: string
+    profile_image_url?: string | null
+    tags?: string[]
+    username: string
+    category_id?: string
+}
+
+export type User = {
     id: string
-    profile_image_url: string | null
-    tags: string[]
+    email: string
+    image_url: string | null
+    streamer_id: string | null
     username: string
 }

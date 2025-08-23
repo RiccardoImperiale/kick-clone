@@ -1,4 +1,4 @@
-export type AppRoute = '/' | '/browse' | '/following' | '/categories' | '/category/:id'
+export type AppRoute = '/' | '/browse' | '/following' | '/categories' | '/category/:id' | '/channel'
 
 export class AppRoutes {
     static home: AppRoute = '/'
@@ -6,4 +6,5 @@ export class AppRoutes {
     static following: AppRoute = '/following'
     static categories: AppRoute = '/categories'
     static showCategory: AppRoute = '/category/:id'
+    static channel: AppRoute = '/channel'
 }
