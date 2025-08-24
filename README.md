@@ -8,4 +8,4 @@ A clone of the streaming platform **Kick**, built to practice modern technologie
 
 ### ☁️ Vercel
 
-### [Current Version](https://kick-clone-bpydpn0p0-riccardos-projects-edda344d.vercel.app/)
+### [Current Version](https://kick-clone-r133va5h7-riccardos-projects-edda344d.vercel.app/)
