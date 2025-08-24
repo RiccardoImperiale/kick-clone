@@ -16,6 +16,7 @@ export const StreamerPreview = (props: StreamerPreviewProps) => {
 
     useEffect(() => {
         const enterCall = async () => {
+            // ... (rest of your existing logic to set up the client and call)
             const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY
             if (!apiKey) {
                 throw new Error('NEXT_PUBLIC_STREAM_API_KEY is not set')
@@ -23,6 +24,7 @@ export const StreamerPreview = (props: StreamerPreviewProps) => {
             if (!props.userData?.id) {
                 return
             }
+            // Check if client and call are already initialized before creating new ones
             if (client && call) {
                 return
             }
@@ -45,7 +47,18 @@ export const StreamerPreview = (props: StreamerPreviewProps) => {
             setClient(streamClient)
             setCall(streamCall)
         }
+
         enterCall()
+
+        return () => {
+            const cleanup = async () => {
+                if (call) {
+                    await call.leave()
+                    call.stopLive().catch(e => console.error('Failed to stop live call on cleanup:', e))
+                }
+            }
+            cleanup()
+        }
     }, [props.userData, client, call])
 
     return (

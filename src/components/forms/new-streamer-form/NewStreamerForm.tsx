@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { Input } from '@/components/input/Input'
 import { Button } from '@/components/button/Button'
 import { SignUpError } from '@/utils/validator'
@@ -7,7 +8,6 @@ import { ErrorMessage } from '@/components/error-message/ErrorMessage'
 import { Category } from '@/lib/types'
 import { createStreamer } from '@/actions/streamers'
 import { NewStreamer } from '@/lib/apiTypes'
-import router from 'next/router'
 import { AppRoutes } from '@/settings/AppRoutes'
 
 interface INewStreamerFormProps {
@@ -19,6 +19,7 @@ interface INewStreamerFormProps {
 }
 
 export const NewStreamerForm = (props: INewStreamerFormProps) => {
+    const router = useRouter()
     const [errorMsg, setErrorMsg] = useState<SignUpError>({})
     const [respMsg, setRespMsg] = useState('')
 

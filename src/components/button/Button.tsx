@@ -1,11 +1,12 @@
 import styles from './Button.module.scss'
 
 interface IButtonPrimaryProps {
-    text: string
+    text?: string
     type?: 'submit' | 'reset' | 'button'
     color?: 'primary' | 'secondary' | 'neutral' | 'disabled'
     isDisabled?: boolean
     onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void
+    icon?: React.ReactNode
 }
 
 export const Button = (props: IButtonPrimaryProps) => {
@@ -31,6 +32,7 @@ export const Button = (props: IButtonPrimaryProps) => {
 
     return (
         <button onClick={props.onClick} type={props.type ?? 'submit'} className={`${styles.btn} ${btnColor}`} disabled={props.isDisabled}>
+            {props.icon}
             {props.text && props.text}
         </button>
     )

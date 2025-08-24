@@ -20,12 +20,14 @@ import Link from 'next/link'
 import { HomeIcon } from '@/assets/icons/HomeIcon'
 import { BrowseIcon } from '@/assets/icons/BrowseIcon'
 import { FollowingIcon } from '@/assets/icons/FollowingIcon'
+import { usePageLoading } from '@/hooks/usePageLoading'
 
 interface HeaderProps {
     user: User | null
 }
 
 export const Navbar = (props: HeaderProps) => {
+    usePageLoading()
     const router = useRouter()
     const isLoading = useLoadingStore(state => state.isLoading)
     const setIsSidebarOpen = useSidebarStore(state => state.toggleIsOpen)

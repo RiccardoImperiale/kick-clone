@@ -2,7 +2,6 @@
 import { useState } from 'react'
 import { Input } from '@/components/input/Input'
 import { Button } from '@/components/button/Button'
-import { SignUpError } from '@/utils/validator'
 import { ErrorMessage } from '@/components/error-message/ErrorMessage'
 import { createLivestream } from '@/actions/livestreams'
 
@@ -15,7 +14,6 @@ interface INewLivestreamFormProps {
 }
 
 export const NewLivestreamForm = (props: INewLivestreamFormProps) => {
-    const [errorMsg, setErrorMsg] = useState<SignUpError>({})
     const [respMsg, setRespMsg] = useState('')
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

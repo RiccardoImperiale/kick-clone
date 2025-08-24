@@ -3,10 +3,14 @@
 import styles from './SreamView.module.scss'
 import { useState } from 'react'
 import { deleteLivestream } from '@/actions/livestreams'
-import { Call, ParticipantView, useCallStateHooks, useDeviceList } from '@stream-io/video-react-sdk'
+import { Call, ParticipantView, useCallStateHooks } from '@stream-io/video-react-sdk'
 import { Button } from '@/components/button/Button'
 import { GoLiveModal } from '@/components/popups/go-live-modal/GoLiveModal'
 import { OffLineImg } from '@/assets/OffLineImg'
+import { CameraOnIcon } from '@/assets/icons/CameraOnIcon'
+import { CameraOffIcon } from '@/assets/icons/CameraOffIcon'
+import { MicOnIcon } from '@/assets/icons/MicOnIcon'
+import { MicOffIcon } from '@/assets/icons/MicOffIcon'
 
 interface StreamerViewProps {
     call: Call
@@ -15,15 +19,15 @@ interface StreamerViewProps {
 
 export const StreamerView = (props: StreamerViewProps) => {
     const [isGoLiveModalOpen, setIsGoLiveModalOpen] = useState(false)
-    const { useCameraState, useMicrophoneState, useScreenShareState, useParticipantCount, useIsCallLive, useParticipants } = useCallStateHooks()
-    const { camera, isEnabled: isCamEnabled, devices, selectedDevice } = useCameraState()
+    const { useCameraState, useMicrophoneState, useScreenShareState, useIsCallLive, useParticipants } = useCallStateHooks()
+    const { camera, isEnabled: isCamEnabled } = useCameraState()
     const { microphone, isEnabled: isMicEnabled } = useMicrophoneState()
     const isLive = useIsCallLive()
     const [firstParticipant] = useParticipants()
 
-    const { screenShare, isEnabled: isScreenShareEnabled } = useScreenShareState()
-    const participantCount = useParticipantCount()
-    const { deviceList, selectedDeviceInfo } = useDeviceList(devices, selectedDevice)
+    const { isEnabled: isScreenShareEnabled } = useScreenShareState()
+    // const participantCount = useParticipantCount()
+    // const { deviceList, selectedDeviceInfo } = useDeviceList(devices, selectedDevice)
 
     const handleStopLive = async () => {
         if (isLive) {
@@ -75,20 +79,19 @@ export const StreamerView = (props: StreamerViewProps) => {
                     <div className={styles.placeholder}>The host has not joined the call</div>
                 )}
                 <div className={styles.controls}>
-                    {/* <div>Participant count: {participantCount}</div> */}
                     <Button color="disabled" text={isLive ? 'Stop Live' : 'Go Live'} onClick={handleStopLive} />
-                    <Button color="primary" text={isCamEnabled ? 'Disable Camera' : 'Enable Camera'} onClick={() => camera.toggle()} />
-                    <Button color="primary" text={isMicEnabled ? 'Mute' : 'Unmute'} onClick={() => microphone.toggle()} />
+                    <Button color="primary" icon={isCamEnabled ? <CameraOnIcon /> : <CameraOffIcon />} onClick={async () => await camera.toggle()} />
+                    <Button color="primary" icon={isMicEnabled ? <MicOnIcon /> : <MicOffIcon />} onClick={async () => await microphone.toggle()} />
                 </div>
             </div>
-            {/* <section className={styles.section}>
-                <h2>Devices</h2>
-                <div className={styles.buttonGroup}>
-                    {deviceList.map((device, index) => (
-                        <Button key={`${device.deviceId}-${index}`} text={device.label} onClick={async () => camera.select(device.deviceId)} />
-                    ))}
-                </div>
-            </section> */}
         </div>
     )
 }
+// <section className={styles.section}>
+//     <h2>Devices</h2>
+//     <div className={styles.buttonGroup}>
+//         {deviceList.map((device, index) => (
+//             <Button key={`${device.deviceId}-${index}`} text={device.label} onClick={async () => await camera.select(device.deviceId)} />
+//         ))}
+//     </div>
+// </section>

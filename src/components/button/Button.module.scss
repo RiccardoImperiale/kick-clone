@@ -3,6 +3,11 @@ $btn-primary-hover-bg-color: var(--color-bg-600);
 $btn-primary-text-color: var(--color-text-900);
 $btn-neutral-hover-bg-color: var(--color-bg-secondary);
 
+$btn-secondary-bg-color: var(--color-bg-primary);
+$btn-secondary-text-color: var(--color-text-regular);
+$btn-secondary-border-color: var(--color-bg-primary);
+$btn-secondary-hover-color: black;
+
 .btn {
     border: none;
     cursor: pointer;
@@ -10,9 +15,11 @@ $btn-neutral-hover-bg-color: var(--color-bg-secondary);
     white-space: nowrap;
     border-radius: 0.25rem;
     padding: 0.5rem 0.75rem;
+    height: 2.5rem;
     font-size: 1rem;
     line-height: 1.5rem;
     font-weight: 600;
+    transition: 0.2s ease;
 
     &:active {
         scale: 0.98;
@@ -46,18 +53,15 @@ $btn-neutral-hover-bg-color: var(--color-bg-secondary);
     pointer-events: none;
 }
 
-/* .secondary {
-    background-color: $btn-secondary-color;
-    border: 1.5px solid $btn-border-color;
+.secondary {
+    background-color: $btn-secondary-bg-color;
+    border: 1.5px solid $btn-secondary-border-color;
+    color: $btn-secondary-text-color;
 
     &:hover {
         background-color: $btn-secondary-hover-color;
     }
-
-    &:active {
-        background-color: $btn-secondary-active-color;
-    }
-} */
+}
 
 /* 
 .neutral {

@@ -44,7 +44,7 @@ export default async function Home() {
 
     return (
         <div className={styles.pageLayout}>
-            {user && !isUserStreamer && <OnboardingSection userId={user.id} />}
+            {user && <OnboardingSection userId={user.id} isUserStreamer={isUserStreamer} />}
             <CategoriesSection />
             {streams.map(({ category, livestreams }) => (
                 <StreamingSection key={category.id} sectionTitle={category.name} livestreams={livestreams} />

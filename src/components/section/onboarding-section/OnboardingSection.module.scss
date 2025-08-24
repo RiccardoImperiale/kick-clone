@@ -1,75 +1,41 @@
-$border-section-color: var(--color-border-secondary-500);
+$border-color: var(--color-bg-500);
 $link-color: var(--color-text-300);
+$show-more-text-color: var(--color-text-100);
 $show-more-text-color: var(--color-text-100);
 
 .sectionLayout {
-    padding-bottom: 2rem;
     position: relative;
-}
+    height: 240px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 0.25rem;
 
-.sectionHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    font-weight: 600;
-
-    h2 {
-        font-size: 1.125rem;
-        line-height: 1.75rem;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
-    span {
-        font-size: 0.875rem;
-        line-height: 1.25rem;
-        color: $link-color;
-    }
-}
-
-.streamPreviews {
-    margin-top: 1rem;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-}
-
-.lineBox {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-
-    .line {
-        border: none;
-        border-bottom: 2px solid $border-section-color;
-        flex-grow: 1;
-    }
-
-    span {
-        font-size: 0.75rem;
-        line-height: 1rem;
-        font-weight: 600;
-        color: $show-more-text-color;
-        transition: 0.2s ease;
-        padding-inline: 0.75rem;
-
-        &:hover {
-            cursor: pointer;
-            color: white;
-        }
+    button {
+        position: absolute;
+        margin: auto;
+        height: fit-content;
+        left: 6rem;
+        top: 0;
+        bottom: 0;
+        height: 58px;
+        padding-inline: 2rem;
+        font-size: 1.2rem;
     }
 }
 
 @media (max-width: 768px) {
-    .streamPreviews {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 480px) {
-    .streamPreviews {
-        grid-template-columns: repeat(1, 1fr);
+    .sectionLayout button {
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        width: fit-content;
     }
 }
